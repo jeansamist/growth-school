@@ -1,17 +1,10 @@
 import { Label } from "@/components/ui/label";
-import { AppLayout } from "@/components/layouts/app-layout";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 // import {  } from '@adonisjs/'
 
-export type PageProps = {
-  title: string;
-  description: string;
-  errors?: string[];
-};
-
-const AddBook = ({ title, description, errors }: PageProps) => {
+const AddBook = () => {
   return (
     <div className="container mx-auto px-6 space-y-12">
       <div className="space-y-4">
@@ -22,7 +15,6 @@ const AddBook = ({ title, description, errors }: PageProps) => {
           Entrez les informations de votre livre et cliquez sur ajouter
         </p>
       </div>
-      {errors}
       <form
         method="POST"
         action="/admin/book/store"
