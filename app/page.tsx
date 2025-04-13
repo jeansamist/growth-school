@@ -1,103 +1,178 @@
-import Image from "next/image";
-
+import { BestSellerSection } from "@/components/best-seller-section";
+import { FeatureBookSection } from "@/components/feature-book-section";
+import { HomeHero } from "@/components/home-hero";
+import { ShopSection } from "@/components/shop-section";
+import { TestimonialSection } from "@/components/testimonial-section";
 export default function Home() {
+  const books = [
+    {
+      cover: "https://m.media-amazon.com/images/I/71aFt4+OTOL.jpg",
+      discount_percentage: 10,
+      average_rate: 4.5,
+      title: "The Alchemist",
+      price: 18 * 550,
+      tags: [
+        { name: "Fiction", id: 1 },
+        { name: "Adventure", id: 2 },
+      ],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/81-QB7nDh4L.jpg",
+      discount_percentage: 15,
+      average_rate: 4.7,
+      title: "Atomic Habits",
+      price: 22 * 550,
+      tags: [
+        { name: "Self-help", id: 3 },
+        { name: "Productivity", id: 4 },
+      ],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/81eB+7+CkUL.jpg",
+      discount_percentage: 5,
+      average_rate: 4.6,
+      title: "Rich Dad Poor Dad",
+      price: 16 * 550,
+      tags: [
+        { name: "Finance", id: 5 },
+        { name: "Mindset", id: 6 },
+      ],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/71UwSHSZRnS.jpg",
+      average_rate: 4.3,
+      title: "The Subtle Art of Not Giving a F*ck",
+      price: 20 * 550,
+      tags: [{ name: "Psychology", id: 7 }],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/81bsw6fnUiL.jpg",
+      average_rate: 4.8,
+      title: "To Kill a Mockingbird",
+      price: 15 * 550,
+      tags: [
+        { name: "Classic", id: 8 },
+        { name: "Drama", id: 9 },
+      ],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/81dQwQlmAXL.jpg",
+      discount_percentage: 20,
+      average_rate: 4.7,
+      title: "Thinking, Fast and Slow",
+      price: 25 * 550,
+      tags: [{ name: "Cognitive Science", id: 10 }],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/71kxa1-0mfL.jpg",
+      average_rate: 4.6,
+      title: "The Power of Now",
+      price: 19 * 550,
+      tags: [{ name: "Spirituality", id: 11 }],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/81wgcld4wxL.jpg",
+      average_rate: 4.4,
+      title: "12 Rules for Life",
+      price: 21 * 550,
+      tags: [{ name: "Philosophy", id: 12 }],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/91bYsX41DVL.jpg",
+      average_rate: 4.5,
+      title: "Deep Work",
+      price: 23 * 550,
+      tags: [
+        { name: "Productivity", id: 4 },
+        { name: "Focus", id: 13 },
+      ],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/71g2ednj0JL.jpg",
+      average_rate: 4.7,
+      title: "Can't Hurt Me",
+      price: 24 * 550,
+      tags: [{ name: "Motivation", id: 14 }],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/91OINeHnJGL.jpg",
+      discount_percentage: 12,
+      average_rate: 4.2,
+      title: "The 4-Hour Workweek",
+      price: 26 * 550,
+      tags: [{ name: "Lifestyle", id: 15 }],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/71uAI28kJuL.jpg",
+      average_rate: 4.6,
+      title: "Zero to One",
+      price: 18 * 550,
+      tags: [{ name: "Startup", id: 16 }],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/81drfTT9ZfL.jpg",
+      average_rate: 4.4,
+      title: "Becoming",
+      price: 22 * 550,
+      tags: [{ name: "Biography", id: 17 }],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/61Iz2yy2CKL.jpg",
+      average_rate: 4.1,
+      title: "The Lean Startup",
+      price: 19 * 550,
+      tags: [{ name: "Business", id: 18 }],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/71aLultW5EL.jpg",
+      average_rate: 4.3,
+      title: "Hooked",
+      price: 17 * 550,
+      tags: [{ name: "Design", id: 19 }],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/81vpsIs58WL.jpg",
+      average_rate: 4.7,
+      title: "The Pragmatic Programmer",
+      price: 30 * 550,
+      tags: [{ name: "Programming", id: 20 }],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/71X6mnUDSzL.jpg",
+      average_rate: 4.9,
+      title: "Clean Code",
+      price: 28 * 550,
+      tags: [{ name: "Software Engineering", id: 21 }],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/71u0tDRNJHL.jpg",
+      average_rate: 4.4,
+      title: "The Psychology of Money",
+      price: 20 * 550,
+      tags: [{ name: "Finance", id: 5 }],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/71aG+xDKSYL.jpg",
+      average_rate: 4.8,
+      title: "Start With Why",
+      price: 22 * 550,
+      tags: [{ name: "Leadership", id: 22 }],
+    },
+    {
+      cover: "https://m.media-amazon.com/images/I/81Afzr7P2-L.jpg",
+      average_rate: 4.6,
+      title: "Good to Great",
+      price: 27 * 550,
+      tags: [{ name: "Management", id: 23 }],
+    },
+  ];
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    <>
+      <HomeHero />
+      <ShopSection />
+      <BestSellerSection books={books} />
+      <FeatureBookSection />
+      <TestimonialSection />
+    </>
   );
 }
