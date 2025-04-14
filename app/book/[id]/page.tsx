@@ -5,6 +5,7 @@ import React from "react";
 import stars from "@/assets/images/stars.png";
 import { CameraIcon, File } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { DetailPageModal } from "@/components/details-page-modal";
 export default async function page({
   params,
 }: {
@@ -25,6 +26,21 @@ export default async function page({
   }
   return (
     <div className="container  px-6 lg:px-12 mx-auto space-y-12 pt-6">
+      <DetailPageModal
+        book={{
+          id: book.id,
+          cover: book.cover,
+          discount_percentage: book.discount
+            ? (book.discount / book.price) * 100
+            : undefined,
+          average_rate: 5,
+          title: book.title,
+          price: book.price,
+          tags: TAGS.filter((bdTag) =>
+            book.tags.some((tag) => tag.tagId === bdTag.id)
+          ).map((tag) => ({ name: tag.name, id: tag.id })),
+        }}
+      />
       <div className="font-bold">
         <Link className="text-primary" href={"/"}>
           Accueil /
