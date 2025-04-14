@@ -4,14 +4,19 @@ import { FunctionComponent } from "react";
 export type CategoryCardProps = {
   name: string;
   cover: StaticImageData | string;
+  id?: number;
 };
 
 export const CategoryCard: FunctionComponent<CategoryCardProps> = ({
   name,
   cover,
+  id,
 }) => {
   return (
-    <a href="/books?category=" className={"rounded-3xl bg-primary-soft"}>
+    <a
+      href={"/books?category=" + id?.toString()}
+      className={"rounded-3xl bg-primary-soft"}
+    >
       <Image
         width={1920}
         height={1080}

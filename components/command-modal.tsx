@@ -75,7 +75,10 @@ export const CommandModal: FunctionComponent<CommandModalProps> = ({
                 )}
                 <b className="text-lg">
                   {book.discount_percentage && book.discount_percentage > 0
-                    ? book.price - (book.price * book.discount_percentage) / 100
+                    ? Math.ceil(
+                        book.price -
+                          (book.price * book.discount_percentage) / 100
+                      )
                     : book.price}{" "}
                   FCFA
                 </b>
@@ -85,7 +88,13 @@ export const CommandModal: FunctionComponent<CommandModalProps> = ({
           <div className="p-6 lg:p-8 flex flex-col justify-between flex-1">
             <div className="pb-6 lg:pb-8 border-b border-primary-soft space-y-4 flex items-center flex-col">
               {/* <div className="font-bold">{book.title}</div> */}
-              <Image width={1920} height={1080} src={paymentImage} alt="" />
+              <Image
+                width={1920}
+                height={1080}
+                src={paymentImage}
+                className="!w-auto !h-auto"
+                alt=""
+              />
               <div>Paiement par mobile</div>
             </div>
             <div className="h-full"></div>

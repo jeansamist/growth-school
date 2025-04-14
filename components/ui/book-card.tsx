@@ -2,7 +2,10 @@ import { FunctionComponent } from "react";
 import placeholder from "@/assets/images/book-placeholder.png";
 import { Button } from "./button";
 import Image from "next/image";
+import { Eye } from "lucide-react";
+import Link from "next/link";
 export type BookCardProps = {
+  id?: number; // not require
   cover?: string;
   discount_percentage?: number;
   average_rate: number;
@@ -14,6 +17,7 @@ export type BookCardProps = {
 };
 
 export const BookCard: FunctionComponent<BookCardProps> = ({
+  id,
   cover,
   discount_percentage,
   average_rate,
@@ -35,7 +39,7 @@ export const BookCard: FunctionComponent<BookCardProps> = ({
         />
         {discount_percentage && discount_percentage > 0 && (
           <div className="absolute left-0 top-6 bg-secondary text-white font-semibold text-xl px-4 py-3 rounded-r-xl">
-            {discount_percentage}%
+            {Math.ceil(discount_percentage)}%
           </div>
         )}
       </div>
@@ -69,7 +73,7 @@ export const BookCard: FunctionComponent<BookCardProps> = ({
       <div className="flex items-center gap-1">
         <b className="text-lg">
           {discount_percentage && discount_percentage > 0
-            ? price - (price * discount_percentage) / 100
+            ? Math.ceil(price - (price * discount_percentage) / 100)
             : price}{" "}
           FCFA
         </b>
@@ -79,7 +83,7 @@ export const BookCard: FunctionComponent<BookCardProps> = ({
           </span>
         )}
       </div>
-      <div className="pt-4">
+      <div className="pt-4 flex gap-2">
         <Button
           onClick={() => {
             if (setBook && openModal) {
@@ -91,13 +95,20 @@ export const BookCard: FunctionComponent<BookCardProps> = ({
                 title,
                 price,
                 tags,
+                id,
               });
             }
           }}
-          className="w-full"
+          className="flex-1"
         >
           Acheter
         </Button>
+        <Link
+          href={"/book/" + id?.toString()}
+          className="w-14 h-14 border flex items-center justify-center rounded-xl opacity-70"
+        >
+          <Eye />
+        </Link>
       </div>
     </div>
   );

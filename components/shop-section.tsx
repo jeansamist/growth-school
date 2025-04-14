@@ -1,24 +1,9 @@
 import { FunctionComponent } from "react";
-import imageCategoryPlaceholder1 from "@/assets/images/placeholder-1.png";
-import imageCategoryPlaceholder2 from "@/assets/images/placeholder-2.png";
-import imageCategoryPlaceholder3 from "@/assets/images/placeholder-3.png";
-import { CategoryCard } from "@/components/ui/category-card";
+import { CategoryCard, CategoryCardProps } from "@/components/ui/category-card";
 import { buttonVariants } from "./ui/button";
-export const ShopSection: FunctionComponent = () => {
-  const categories = [
-    {
-      name: "Formation",
-      cover: imageCategoryPlaceholder1,
-    },
-    {
-      name: "Ebook",
-      cover: imageCategoryPlaceholder2,
-    },
-    {
-      name: "Template",
-      cover: imageCategoryPlaceholder3,
-    },
-  ];
+export const ShopSection: FunctionComponent<{
+  categories: CategoryCardProps[];
+}> = ({ categories }) => {
   return (
     <div
       className={
