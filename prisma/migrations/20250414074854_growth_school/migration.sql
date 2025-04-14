@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Item" ALTER COLUMN "edition" SET DATA TYPE TEXT;

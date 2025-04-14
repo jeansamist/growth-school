@@ -3507,6 +3507,7 @@ export namespace Prisma {
     price: number | null
     discount: number | null
     categoryId: number | null
+    pages: number | null
   }
 
   export type ItemSumAggregateOutputType = {
@@ -3514,6 +3515,7 @@ export namespace Prisma {
     price: number | null
     discount: number | null
     categoryId: number | null
+    pages: number | null
   }
 
   export type ItemMinAggregateOutputType = {
@@ -3524,6 +3526,12 @@ export namespace Prisma {
     cover: string | null
     discount: number | null
     categoryId: number | null
+    author: string | null
+    isbn: string | null
+    language: string | null
+    pages: number | null
+    edition: string | null
+    date: string | null
   }
 
   export type ItemMaxAggregateOutputType = {
@@ -3534,6 +3542,12 @@ export namespace Prisma {
     cover: string | null
     discount: number | null
     categoryId: number | null
+    author: string | null
+    isbn: string | null
+    language: string | null
+    pages: number | null
+    edition: string | null
+    date: string | null
   }
 
   export type ItemCountAggregateOutputType = {
@@ -3544,6 +3558,12 @@ export namespace Prisma {
     cover: number
     discount: number
     categoryId: number
+    author: number
+    isbn: number
+    language: number
+    pages: number
+    edition: number
+    date: number
     _all: number
   }
 
@@ -3553,6 +3573,7 @@ export namespace Prisma {
     price?: true
     discount?: true
     categoryId?: true
+    pages?: true
   }
 
   export type ItemSumAggregateInputType = {
@@ -3560,6 +3581,7 @@ export namespace Prisma {
     price?: true
     discount?: true
     categoryId?: true
+    pages?: true
   }
 
   export type ItemMinAggregateInputType = {
@@ -3570,6 +3592,12 @@ export namespace Prisma {
     cover?: true
     discount?: true
     categoryId?: true
+    author?: true
+    isbn?: true
+    language?: true
+    pages?: true
+    edition?: true
+    date?: true
   }
 
   export type ItemMaxAggregateInputType = {
@@ -3580,6 +3608,12 @@ export namespace Prisma {
     cover?: true
     discount?: true
     categoryId?: true
+    author?: true
+    isbn?: true
+    language?: true
+    pages?: true
+    edition?: true
+    date?: true
   }
 
   export type ItemCountAggregateInputType = {
@@ -3590,6 +3624,12 @@ export namespace Prisma {
     cover?: true
     discount?: true
     categoryId?: true
+    author?: true
+    isbn?: true
+    language?: true
+    pages?: true
+    edition?: true
+    date?: true
     _all?: true
   }
 
@@ -3687,6 +3727,12 @@ export namespace Prisma {
     cover: string
     discount: number | null
     categoryId: number
+    author: string | null
+    isbn: string | null
+    language: string | null
+    pages: number | null
+    edition: string | null
+    date: string | null
     _count: ItemCountAggregateOutputType | null
     _avg: ItemAvgAggregateOutputType | null
     _sum: ItemSumAggregateOutputType | null
@@ -3716,6 +3762,12 @@ export namespace Prisma {
     cover?: boolean
     discount?: boolean
     categoryId?: boolean
+    author?: boolean
+    isbn?: boolean
+    language?: boolean
+    pages?: boolean
+    edition?: boolean
+    date?: boolean
     files?: boolean | Item$filesArgs<ExtArgs>
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     tags?: boolean | Item$tagsArgs<ExtArgs>
@@ -3730,6 +3782,12 @@ export namespace Prisma {
     cover?: boolean
     discount?: boolean
     categoryId?: boolean
+    author?: boolean
+    isbn?: boolean
+    language?: boolean
+    pages?: boolean
+    edition?: boolean
+    date?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["item"]>
 
@@ -3741,6 +3799,12 @@ export namespace Prisma {
     cover?: boolean
     discount?: boolean
     categoryId?: boolean
+    author?: boolean
+    isbn?: boolean
+    language?: boolean
+    pages?: boolean
+    edition?: boolean
+    date?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["item"]>
 
@@ -3752,9 +3816,15 @@ export namespace Prisma {
     cover?: boolean
     discount?: boolean
     categoryId?: boolean
+    author?: boolean
+    isbn?: boolean
+    language?: boolean
+    pages?: boolean
+    edition?: boolean
+    date?: boolean
   }
 
-  export type ItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "price" | "cover" | "discount" | "categoryId", ExtArgs["result"]["item"]>
+  export type ItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "price" | "cover" | "discount" | "categoryId" | "author" | "isbn" | "language" | "pages" | "edition" | "date", ExtArgs["result"]["item"]>
   export type ItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     files?: boolean | Item$filesArgs<ExtArgs>
     category?: boolean | CategoryDefaultArgs<ExtArgs>
@@ -3783,6 +3853,12 @@ export namespace Prisma {
       cover: string
       discount: number | null
       categoryId: number
+      author: string | null
+      isbn: string | null
+      language: string | null
+      pages: number | null
+      edition: string | null
+      date: string | null
     }, ExtArgs["result"]["item"]>
     composites: {}
   }
@@ -4216,6 +4292,12 @@ export namespace Prisma {
     readonly cover: FieldRef<"Item", 'String'>
     readonly discount: FieldRef<"Item", 'Int'>
     readonly categoryId: FieldRef<"Item", 'Int'>
+    readonly author: FieldRef<"Item", 'String'>
+    readonly isbn: FieldRef<"Item", 'String'>
+    readonly language: FieldRef<"Item", 'String'>
+    readonly pages: FieldRef<"Item", 'Int'>
+    readonly edition: FieldRef<"Item", 'String'>
+    readonly date: FieldRef<"Item", 'String'>
   }
     
 
@@ -6865,7 +6947,13 @@ export namespace Prisma {
     price: 'price',
     cover: 'cover',
     discount: 'discount',
-    categoryId: 'categoryId'
+    categoryId: 'categoryId',
+    author: 'author',
+    isbn: 'isbn',
+    language: 'language',
+    pages: 'pages',
+    edition: 'edition',
+    date: 'date'
   };
 
   export type ItemScalarFieldEnum = (typeof ItemScalarFieldEnum)[keyof typeof ItemScalarFieldEnum]
@@ -7068,6 +7156,12 @@ export namespace Prisma {
     cover?: StringFilter<"Item"> | string
     discount?: IntNullableFilter<"Item"> | number | null
     categoryId?: IntFilter<"Item"> | number
+    author?: StringNullableFilter<"Item"> | string | null
+    isbn?: StringNullableFilter<"Item"> | string | null
+    language?: StringNullableFilter<"Item"> | string | null
+    pages?: IntNullableFilter<"Item"> | number | null
+    edition?: StringNullableFilter<"Item"> | string | null
+    date?: StringNullableFilter<"Item"> | string | null
     files?: FileListRelationFilter
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
     tags?: TagOnItemListRelationFilter
@@ -7081,6 +7175,12 @@ export namespace Prisma {
     cover?: SortOrder
     discount?: SortOrderInput | SortOrder
     categoryId?: SortOrder
+    author?: SortOrderInput | SortOrder
+    isbn?: SortOrderInput | SortOrder
+    language?: SortOrderInput | SortOrder
+    pages?: SortOrderInput | SortOrder
+    edition?: SortOrderInput | SortOrder
+    date?: SortOrderInput | SortOrder
     files?: FileOrderByRelationAggregateInput
     category?: CategoryOrderByWithRelationInput
     tags?: TagOnItemOrderByRelationAggregateInput
@@ -7097,6 +7197,12 @@ export namespace Prisma {
     cover?: StringFilter<"Item"> | string
     discount?: IntNullableFilter<"Item"> | number | null
     categoryId?: IntFilter<"Item"> | number
+    author?: StringNullableFilter<"Item"> | string | null
+    isbn?: StringNullableFilter<"Item"> | string | null
+    language?: StringNullableFilter<"Item"> | string | null
+    pages?: IntNullableFilter<"Item"> | number | null
+    edition?: StringNullableFilter<"Item"> | string | null
+    date?: StringNullableFilter<"Item"> | string | null
     files?: FileListRelationFilter
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
     tags?: TagOnItemListRelationFilter
@@ -7110,6 +7216,12 @@ export namespace Prisma {
     cover?: SortOrder
     discount?: SortOrderInput | SortOrder
     categoryId?: SortOrder
+    author?: SortOrderInput | SortOrder
+    isbn?: SortOrderInput | SortOrder
+    language?: SortOrderInput | SortOrder
+    pages?: SortOrderInput | SortOrder
+    edition?: SortOrderInput | SortOrder
+    date?: SortOrderInput | SortOrder
     _count?: ItemCountOrderByAggregateInput
     _avg?: ItemAvgOrderByAggregateInput
     _max?: ItemMaxOrderByAggregateInput
@@ -7128,6 +7240,12 @@ export namespace Prisma {
     cover?: StringWithAggregatesFilter<"Item"> | string
     discount?: IntNullableWithAggregatesFilter<"Item"> | number | null
     categoryId?: IntWithAggregatesFilter<"Item"> | number
+    author?: StringNullableWithAggregatesFilter<"Item"> | string | null
+    isbn?: StringNullableWithAggregatesFilter<"Item"> | string | null
+    language?: StringNullableWithAggregatesFilter<"Item"> | string | null
+    pages?: IntNullableWithAggregatesFilter<"Item"> | number | null
+    edition?: StringNullableWithAggregatesFilter<"Item"> | string | null
+    date?: StringNullableWithAggregatesFilter<"Item"> | string | null
   }
 
   export type TagOnItemWhereInput = {
@@ -7320,6 +7438,12 @@ export namespace Prisma {
     price: number
     cover: string
     discount?: number | null
+    author?: string | null
+    isbn?: string | null
+    language?: string | null
+    pages?: number | null
+    edition?: string | null
+    date?: string | null
     files?: FileCreateNestedManyWithoutItemInput
     category: CategoryCreateNestedOneWithoutItemsInput
     tags?: TagOnItemCreateNestedManyWithoutItemInput
@@ -7333,6 +7457,12 @@ export namespace Prisma {
     cover: string
     discount?: number | null
     categoryId: number
+    author?: string | null
+    isbn?: string | null
+    language?: string | null
+    pages?: number | null
+    edition?: string | null
+    date?: string | null
     files?: FileUncheckedCreateNestedManyWithoutItemInput
     tags?: TagOnItemUncheckedCreateNestedManyWithoutItemInput
   }
@@ -7343,6 +7473,12 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     cover?: StringFieldUpdateOperationsInput | string
     discount?: NullableIntFieldUpdateOperationsInput | number | null
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    pages?: NullableIntFieldUpdateOperationsInput | number | null
+    edition?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: NullableStringFieldUpdateOperationsInput | string | null
     files?: FileUpdateManyWithoutItemNestedInput
     category?: CategoryUpdateOneRequiredWithoutItemsNestedInput
     tags?: TagOnItemUpdateManyWithoutItemNestedInput
@@ -7356,6 +7492,12 @@ export namespace Prisma {
     cover?: StringFieldUpdateOperationsInput | string
     discount?: NullableIntFieldUpdateOperationsInput | number | null
     categoryId?: IntFieldUpdateOperationsInput | number
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    pages?: NullableIntFieldUpdateOperationsInput | number | null
+    edition?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: NullableStringFieldUpdateOperationsInput | string | null
     files?: FileUncheckedUpdateManyWithoutItemNestedInput
     tags?: TagOnItemUncheckedUpdateManyWithoutItemNestedInput
   }
@@ -7368,6 +7510,12 @@ export namespace Prisma {
     cover: string
     discount?: number | null
     categoryId: number
+    author?: string | null
+    isbn?: string | null
+    language?: string | null
+    pages?: number | null
+    edition?: string | null
+    date?: string | null
   }
 
   export type ItemUpdateManyMutationInput = {
@@ -7376,6 +7524,12 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     cover?: StringFieldUpdateOperationsInput | string
     discount?: NullableIntFieldUpdateOperationsInput | number | null
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    pages?: NullableIntFieldUpdateOperationsInput | number | null
+    edition?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ItemUncheckedUpdateManyInput = {
@@ -7386,6 +7540,12 @@ export namespace Prisma {
     cover?: StringFieldUpdateOperationsInput | string
     discount?: NullableIntFieldUpdateOperationsInput | number | null
     categoryId?: IntFieldUpdateOperationsInput | number
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    pages?: NullableIntFieldUpdateOperationsInput | number | null
+    edition?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TagOnItemCreateInput = {
@@ -7610,6 +7770,21 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type FileListRelationFilter = {
     every?: FileWhereInput
     some?: FileWhereInput
@@ -7638,6 +7813,12 @@ export namespace Prisma {
     cover?: SortOrder
     discount?: SortOrder
     categoryId?: SortOrder
+    author?: SortOrder
+    isbn?: SortOrder
+    language?: SortOrder
+    pages?: SortOrder
+    edition?: SortOrder
+    date?: SortOrder
   }
 
   export type ItemAvgOrderByAggregateInput = {
@@ -7645,6 +7826,7 @@ export namespace Prisma {
     price?: SortOrder
     discount?: SortOrder
     categoryId?: SortOrder
+    pages?: SortOrder
   }
 
   export type ItemMaxOrderByAggregateInput = {
@@ -7655,6 +7837,12 @@ export namespace Prisma {
     cover?: SortOrder
     discount?: SortOrder
     categoryId?: SortOrder
+    author?: SortOrder
+    isbn?: SortOrder
+    language?: SortOrder
+    pages?: SortOrder
+    edition?: SortOrder
+    date?: SortOrder
   }
 
   export type ItemMinOrderByAggregateInput = {
@@ -7665,6 +7853,12 @@ export namespace Prisma {
     cover?: SortOrder
     discount?: SortOrder
     categoryId?: SortOrder
+    author?: SortOrder
+    isbn?: SortOrder
+    language?: SortOrder
+    pages?: SortOrder
+    edition?: SortOrder
+    date?: SortOrder
   }
 
   export type ItemSumOrderByAggregateInput = {
@@ -7672,6 +7866,7 @@ export namespace Prisma {
     price?: SortOrder
     discount?: SortOrder
     categoryId?: SortOrder
+    pages?: SortOrder
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -7688,6 +7883,24 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type ItemScalarRelationFilter = {
@@ -7730,21 +7943,6 @@ export namespace Prisma {
     tagId?: SortOrder
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type FileCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
@@ -7774,24 +7972,6 @@ export namespace Prisma {
   export type FileSumOrderByAggregateInput = {
     id?: SortOrder
     itemId?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type ItemCreateNestedManyWithoutCategoryInput = {
@@ -7932,6 +8112,10 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type FileUpdateManyWithoutItemNestedInput = {
     create?: XOR<FileCreateWithoutItemInput, FileUncheckedCreateWithoutItemInput> | FileCreateWithoutItemInput[] | FileUncheckedCreateWithoutItemInput[]
     connectOrCreate?: FileCreateOrConnectWithoutItemInput | FileCreateOrConnectWithoutItemInput[]
@@ -8030,10 +8214,6 @@ export namespace Prisma {
     connect?: ItemWhereUniqueInput
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type ItemUpdateOneRequiredWithoutFilesNestedInput = {
     create?: XOR<ItemCreateWithoutFilesInput, ItemUncheckedCreateWithoutFilesInput>
     connectOrCreate?: ItemCreateOrConnectWithoutFilesInput
@@ -8122,6 +8302,20 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -8149,20 +8343,6 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -8186,6 +8366,12 @@ export namespace Prisma {
     price: number
     cover: string
     discount?: number | null
+    author?: string | null
+    isbn?: string | null
+    language?: string | null
+    pages?: number | null
+    edition?: string | null
+    date?: string | null
     files?: FileCreateNestedManyWithoutItemInput
     tags?: TagOnItemCreateNestedManyWithoutItemInput
   }
@@ -8197,6 +8383,12 @@ export namespace Prisma {
     price: number
     cover: string
     discount?: number | null
+    author?: string | null
+    isbn?: string | null
+    language?: string | null
+    pages?: number | null
+    edition?: string | null
+    date?: string | null
     files?: FileUncheckedCreateNestedManyWithoutItemInput
     tags?: TagOnItemUncheckedCreateNestedManyWithoutItemInput
   }
@@ -8238,6 +8430,12 @@ export namespace Prisma {
     cover?: StringFilter<"Item"> | string
     discount?: IntNullableFilter<"Item"> | number | null
     categoryId?: IntFilter<"Item"> | number
+    author?: StringNullableFilter<"Item"> | string | null
+    isbn?: StringNullableFilter<"Item"> | string | null
+    language?: StringNullableFilter<"Item"> | string | null
+    pages?: IntNullableFilter<"Item"> | number | null
+    edition?: StringNullableFilter<"Item"> | string | null
+    date?: StringNullableFilter<"Item"> | string | null
   }
 
   export type TagOnItemCreateWithoutTagInput = {
@@ -8407,6 +8605,12 @@ export namespace Prisma {
     price: number
     cover: string
     discount?: number | null
+    author?: string | null
+    isbn?: string | null
+    language?: string | null
+    pages?: number | null
+    edition?: string | null
+    date?: string | null
     files?: FileCreateNestedManyWithoutItemInput
     category: CategoryCreateNestedOneWithoutItemsInput
   }
@@ -8419,6 +8623,12 @@ export namespace Prisma {
     cover: string
     discount?: number | null
     categoryId: number
+    author?: string | null
+    isbn?: string | null
+    language?: string | null
+    pages?: number | null
+    edition?: string | null
+    date?: string | null
     files?: FileUncheckedCreateNestedManyWithoutItemInput
   }
 
@@ -8460,6 +8670,12 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     cover?: StringFieldUpdateOperationsInput | string
     discount?: NullableIntFieldUpdateOperationsInput | number | null
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    pages?: NullableIntFieldUpdateOperationsInput | number | null
+    edition?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: NullableStringFieldUpdateOperationsInput | string | null
     files?: FileUpdateManyWithoutItemNestedInput
     category?: CategoryUpdateOneRequiredWithoutItemsNestedInput
   }
@@ -8472,6 +8688,12 @@ export namespace Prisma {
     cover?: StringFieldUpdateOperationsInput | string
     discount?: NullableIntFieldUpdateOperationsInput | number | null
     categoryId?: IntFieldUpdateOperationsInput | number
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    pages?: NullableIntFieldUpdateOperationsInput | number | null
+    edition?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: NullableStringFieldUpdateOperationsInput | string | null
     files?: FileUncheckedUpdateManyWithoutItemNestedInput
   }
 
@@ -8503,6 +8725,12 @@ export namespace Prisma {
     price: number
     cover: string
     discount?: number | null
+    author?: string | null
+    isbn?: string | null
+    language?: string | null
+    pages?: number | null
+    edition?: string | null
+    date?: string | null
     category: CategoryCreateNestedOneWithoutItemsInput
     tags?: TagOnItemCreateNestedManyWithoutItemInput
   }
@@ -8515,6 +8743,12 @@ export namespace Prisma {
     cover: string
     discount?: number | null
     categoryId: number
+    author?: string | null
+    isbn?: string | null
+    language?: string | null
+    pages?: number | null
+    edition?: string | null
+    date?: string | null
     tags?: TagOnItemUncheckedCreateNestedManyWithoutItemInput
   }
 
@@ -8540,6 +8774,12 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     cover?: StringFieldUpdateOperationsInput | string
     discount?: NullableIntFieldUpdateOperationsInput | number | null
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    pages?: NullableIntFieldUpdateOperationsInput | number | null
+    edition?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: NullableStringFieldUpdateOperationsInput | string | null
     category?: CategoryUpdateOneRequiredWithoutItemsNestedInput
     tags?: TagOnItemUpdateManyWithoutItemNestedInput
   }
@@ -8552,6 +8792,12 @@ export namespace Prisma {
     cover?: StringFieldUpdateOperationsInput | string
     discount?: NullableIntFieldUpdateOperationsInput | number | null
     categoryId?: IntFieldUpdateOperationsInput | number
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    pages?: NullableIntFieldUpdateOperationsInput | number | null
+    edition?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: NullableStringFieldUpdateOperationsInput | string | null
     tags?: TagOnItemUncheckedUpdateManyWithoutItemNestedInput
   }
 
@@ -8562,6 +8808,12 @@ export namespace Prisma {
     price: number
     cover: string
     discount?: number | null
+    author?: string | null
+    isbn?: string | null
+    language?: string | null
+    pages?: number | null
+    edition?: string | null
+    date?: string | null
   }
 
   export type ItemUpdateWithoutCategoryInput = {
@@ -8570,6 +8822,12 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     cover?: StringFieldUpdateOperationsInput | string
     discount?: NullableIntFieldUpdateOperationsInput | number | null
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    pages?: NullableIntFieldUpdateOperationsInput | number | null
+    edition?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: NullableStringFieldUpdateOperationsInput | string | null
     files?: FileUpdateManyWithoutItemNestedInput
     tags?: TagOnItemUpdateManyWithoutItemNestedInput
   }
@@ -8581,6 +8839,12 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     cover?: StringFieldUpdateOperationsInput | string
     discount?: NullableIntFieldUpdateOperationsInput | number | null
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    pages?: NullableIntFieldUpdateOperationsInput | number | null
+    edition?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: NullableStringFieldUpdateOperationsInput | string | null
     files?: FileUncheckedUpdateManyWithoutItemNestedInput
     tags?: TagOnItemUncheckedUpdateManyWithoutItemNestedInput
   }
@@ -8592,6 +8856,12 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     cover?: StringFieldUpdateOperationsInput | string
     discount?: NullableIntFieldUpdateOperationsInput | number | null
+    author?: NullableStringFieldUpdateOperationsInput | string | null
+    isbn?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: NullableStringFieldUpdateOperationsInput | string | null
+    pages?: NullableIntFieldUpdateOperationsInput | number | null
+    edition?: NullableStringFieldUpdateOperationsInput | string | null
+    date?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TagOnItemCreateManyTagInput = {

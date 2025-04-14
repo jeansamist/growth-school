@@ -83,6 +83,12 @@ export async function createBook(
   const rawDiscount = parseInt(formData.get("discount") as string);
   const rawDescription = formData.get("description") as string;
   const rawCategoryId = parseInt(formData.get("category_id") as string);
+  const rawAuthor = formData.get("author") as string;
+  const rawIsbn = formData.get("isbn") as string;
+  const rawLanguage = formData.get("language") as string;
+  const rawPages = parseInt(formData.get("pages") as string);
+  const rawEdition = formData.get("edition") as string;
+  const rawDate = formData.get("date") as string;
 
   if (!rawTitle || isNaN(rawPrice) || isNaN(rawCategoryId)) {
     return { errors: ["Invalid title, price or category."] };
@@ -94,6 +100,12 @@ export async function createBook(
     price: rawPrice,
     cover: coverPath,
     discount: isNaN(rawDiscount) ? 0 : rawPrice - rawDiscount,
+    author: rawAuthor || "",
+    isbn: rawIsbn || "",
+    language: rawLanguage || "",
+    pages: isNaN(rawPages) ? 0 : rawPages,
+    edition: rawEdition || "",
+    date: rawDate || "",
   };
 
   const d = await prisma.item.create({

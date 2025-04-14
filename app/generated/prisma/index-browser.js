@@ -136,7 +136,13 @@ exports.Prisma.ItemScalarFieldEnum = {
   price: 'price',
   cover: 'cover',
   discount: 'discount',
-  categoryId: 'categoryId'
+  categoryId: 'categoryId',
+  author: 'author',
+  isbn: 'isbn',
+  language: 'language',
+  pages: 'pages',
+  edition: 'edition',
+  date: 'date'
 };
 
 exports.Prisma.TagOnItemScalarFieldEnum = {
