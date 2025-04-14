@@ -1,8 +1,8 @@
 import { PrismaClient } from "@/app/generated/prisma";
-import { CreateBook } from "@/components/forms/create-book";
+import { CreateItem } from "@/components/forms/create-item";
 // import {  } from '@adonisjs/'
 
-const AddBook = async () => {
+const AddItem = async () => {
   const getCategories = async () => {
     const prisma = new PrismaClient();
     try {
@@ -24,8 +24,8 @@ const AddBook = async () => {
           Entrez les informations de votre livre et cliquez sur ajouter
         </p>
       </div>
-      <CreateBook categories={categories} />
+      <CreateItem categories={categories} />
     </div>
   );
 };
-export default AddBook;
+export default AddItem;

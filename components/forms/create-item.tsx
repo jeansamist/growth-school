@@ -4,14 +4,14 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { createBook } from "@/services/book/actions";
+import { createItem } from "@/services/item/actions";
 import { Prisma } from "@/app/generated/prisma";
 import { useActionState } from "react";
-export type CreateBookProps = {
+export type CreateItemProps = {
   categories: Prisma.CategoryGetPayload<{}>[];
 };
 
-export const CreateBook: FunctionComponent<CreateBookProps> = ({
+export const CreateItem: FunctionComponent<CreateItemProps> = ({
   categories,
 }) => {
   const initialFormState: { errors: string[] } = {
@@ -21,7 +21,7 @@ export const CreateBook: FunctionComponent<CreateBookProps> = ({
   const [formState, formAction] = useActionState<
     { errors: string[] },
     FormData
-  >(createBook, initialFormState);
+  >(createItem, initialFormState);
   return (
     <>
       {formState.errors.length !== 0 && (

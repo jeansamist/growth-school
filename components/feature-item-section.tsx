@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
 import bg from "@/assets/images/feature-background.png";
-export type FeatureBookSectionProps = {};
+export type FeatureItemSectionProps = {};
 
-export const FeatureBookSection: FunctionComponent<
-  FeatureBookSectionProps
+export const FeatureItemSection: FunctionComponent<
+  FeatureItemSectionProps
 > = () => {
   return (
     <div

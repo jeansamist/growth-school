@@ -10,7 +10,7 @@ const font = Cairo({
 
 export const metadata: Metadata = {
   title: "Growth school",
-  description: "Get books and courses",
+  description: "Get items and courses",
 };
 
 export default function RootLayout({

@@ -3,7 +3,7 @@ import { axiosInstance } from "@/lib/axios-instance";
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
 
-export async function createBook(
+export async function createItem(
   formState: { errors: string[] },
   formData: FormData
 ) {

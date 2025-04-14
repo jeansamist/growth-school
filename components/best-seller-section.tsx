@@ -1,22 +1,22 @@
 "use client";
 import { FunctionComponent, useState } from "react";
-import { BookCard, BookCardProps } from "./ui/book-card";
+import { ItemCard, ItemCardProps } from "./ui/item-card";
 import { cn } from "@/lib/utils";
 import { CommandModal } from "./command-modal";
 
 export const BestSellerSection: FunctionComponent<{
-  books: BookCardProps[];
-}> = ({ books }) => {
-  const pages = books.length / 6;
+  items: ItemCardProps[];
+}> = ({ items }) => {
+  const pages = items.length / 6;
   const pagesArray = Array.from({ length: pages }, (_, i) => i);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [book, setBook] = useState<BookCardProps>(books[0]);
+  const [item, setItem] = useState<ItemCardProps>(items[0]);
   const [currentPage, setCurrentPage] = useState(0);
   return (
     <>
       <CommandModal
         isOpen={isOpen}
-        book={book}
+        item={item}
         onClose={() => setIsOpen(false)}
       />
       <div
@@ -87,9 +87,9 @@ export const BestSellerSection: FunctionComponent<{
           </div>
         </div>
         <div className="w-full grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-6 gap-6 lg:gap-10">
-          {books.slice(currentPage * 6, (currentPage + 1) * 6).map((b, i) => (
-            <BookCard
-              setBook={setBook}
+          {items.slice(currentPage * 6, (currentPage + 1) * 6).map((b, i) => (
+            <ItemCard
+              setItem={setItem}
               openModal={() => setIsOpen(true)}
               {...b}
               key={i * (currentPage + 1)}

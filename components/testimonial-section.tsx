@@ -32,7 +32,7 @@ export const TestimonialSection: FunctionComponent<
     {
       profileImg: "/profile1.png",
       testimonial:
-        "Whether it’s ayurveda or astrology, naturopathy or Acupuncture - if you’re a holistic specialist devoted to your practice and looking to share your wisdom, grow your audience and get more bookings, we can help.",
+        "Whether it’s ayurveda or astrology, naturopathy or Acupuncture - if you’re a holistic specialist devoted to your practice and looking to share your wisdom, grow your audience and get more itemings, we can help.",
       name: "John Smith",
       work: "Fitness Trainer",
     },

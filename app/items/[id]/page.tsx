@@ -18,10 +18,10 @@ export default async function page({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id: bookId } = await params;
+  const { id: itemId } = await params;
   const TAGS = await prisma.tag.findMany();
-  const book = await prisma.item.findUnique({
-    where: { id: Number(bookId) },
+  const item = await prisma.item.findUnique({
+    where: { id: Number(itemId) },
     include: {
       tags: true,
       category: {
@@ -32,23 +32,23 @@ export default async function page({
       files: true,
     },
   });
-  if (book === null) {
+  if (item === null) {
     return null;
   }
   return (
     <>
       <DetailPageModal
-        book={{
-          id: book.id,
-          cover: book.cover,
-          discount_percentage: book.discount
-            ? (book.discount / book.price) * 100
+        item={{
+          id: item.id,
+          cover: item.cover,
+          discount_percentage: item.discount
+            ? (item.discount / item.price) * 100
             : undefined,
           average_rate: 5,
-          title: book.title,
-          price: book.price,
+          title: item.title,
+          price: item.price,
           tags: TAGS.filter((bdTag) =>
-            book.tags.some((tag) => tag.tagId === bdTag.id)
+            item.tags.some((tag) => tag.tagId === bdTag.id)
           ).map((tag) => ({ name: tag.name, id: tag.id })),
         }}
       />
@@ -59,20 +59,20 @@ export default async function page({
           </Link>
           <Link
             className="text-primary"
-            href={"/book/?category=" + book?.categoryId.toString()}
+            href={"/items/?category=" + item?.categoryId.toString()}
           >
-            {book?.category.name} /
+            {item?.category.name} /
           </Link>
-          <span className="opacity-70">{book?.title} /</span>
+          <span className="opacity-70">{item?.title} /</span>
         </div>
         <div className="flex gap-6 xl:gap-12 flex-col xl:flex-row">
-          {book?.category.id === 1 ? (
+          {item?.category.id === 1 ? (
             <div>
               <Image
-                src={book.cover}
+                src={item.cover}
                 width={600}
                 height={1000}
-                alt={book?.title}
+                alt={item?.title}
                 className="!h-auto aspect-video object-cover rounded-xl"
               />
             </div>
@@ -81,21 +81,21 @@ export default async function page({
               <div className="grid grid-cols-4 gap-4">
                 <div className="col-span-1 space-y-4">
                   <Image
-                    src={book.cover}
+                    src={item.cover}
                     width={600}
                     height={600}
                     alt=""
                     className="!w-full aspect-square object-cover rounded-xl"
                   />
                   <Image
-                    src={book.cover}
+                    src={item.cover}
                     width={600}
                     height={600}
                     alt=""
                     className="!w-full aspect-square object-cover rounded-xl"
                   />
                   <Image
-                    src={book.cover}
+                    src={item.cover}
                     width={600}
                     height={600}
                     alt=""
@@ -104,7 +104,7 @@ export default async function page({
                 </div>
                 <div className="col-span-3">
                   <Image
-                    src={book.cover}
+                    src={item.cover}
                     width={600}
                     height={1000}
                     alt=""
@@ -116,7 +116,7 @@ export default async function page({
           )}
           <div className="flex-1 space-y-6 lg:space-y-12">
             <h1 className=" font-bold text-4xl sm:text-5xl lg:text-6xl text-balance">
-              {book.title}
+              {item.title}
             </h1>
             <div className="flex gap-4 items-center">
               <Image
@@ -129,21 +129,21 @@ export default async function page({
               <span className="text-2xl font-bold">4.0</span>
             </div>
             <div className="opacity-70 leading-normal text-balance lg:text-lg xl:text-xl">
-              {book.description}
+              {item.description}
             </div>
-            {book.categoryId === 2 && (
+            {item.categoryId === 2 && (
               <>
                 <div className="flex gap-6 items-start">
                   <div>
                     <div className="text-secondary text-sm">Ecrit par</div>
                     <div className="font-bold">
-                      {book.author || "Non precise"}
+                      {item.author || "Non precise"}
                     </div>
                   </div>
                   <div>
                     <div className="text-secondary text-sm">Edition</div>
                     <div className="font-bold">
-                      {book.edition || "Non precise"}
+                      {item.edition || "Non precise"}
                     </div>
                   </div>
                   <div>
@@ -153,29 +153,29 @@ export default async function page({
                 </div>
               </>
             )}
-            {book.categoryId === 1 && (
+            {item.categoryId === 1 && (
               <div className="flex gap-6 items-center font-bold">
                 <div className="flex items-center gap-6">
                   <File className="text-secondary" size={24} />
-                  <span>{book.files.length.toString()} Modules</span>
+                  <span>{item.files.length.toString()} Modules</span>
                 </div>
                 <div className="flex items-center gap-6">
-                  {book.categoryId === 1 && (
+                  {item.categoryId === 1 && (
                     <CameraIcon className="text-secondary" size={24} />
                   )}
-                  <span>{book.files.length.toString()} Modules</span>
+                  <span>{item.files.length.toString()} Modules</span>
                 </div>
               </div>
             )}
             <div className="border-2 border-gray-400/70 border-dashed"></div>
             <div className="w-full flex justify-between items-center">
               <h1 className=" font-bold text-4xl sm:text-5xl lg:text-6xl text-balance text-primary">
-                {book.discount && (book.discount / book.price) * 100 > 0
+                {item.discount && (item.discount / item.price) * 100 > 0
                   ? Math.ceil(
-                      book.price -
-                        (book.price * (book.discount / book.price) * 100) / 100
+                      item.price -
+                        (item.price * (item.discount / item.price) * 100) / 100
                     )
-                  : book.price}{" "}
+                  : item.price}{" "}
                 FCFA
               </h1>
               <Button variant={"secondary"}>Acheter maintenant</Button>
@@ -191,55 +191,61 @@ export default async function page({
         <div className="flex flex-col xl:flex-row gap-6 w-full mb-12">
           <div className="space-y-6 flex-1">
             <h1 className=" font-bold text-4xl sm:text-5xl lg:text-6xl text-balance">
-              {book.categoryId === 1 ? "Contenu du cours" : "Details"}
+              {item.categoryId === 1 ? "Contenu du cours" : "Details"}
             </h1>
-            {book.categoryId === 2 ? (
+            {item.categoryId === 2 ? (
               <div className="text-lg">
                 <div className="py-4 px-6 border-t border-primary-soft flex">
-                  <div className="w-[300px] font-bold">Titre</div>
-                  <div className="flex-1 opacity-70">{book.title}</div>
+                  <div className="w-[175px] md:w-[300px] font-bold">Titre</div>
+                  <div className="flex-1 opacity-70">{item.title}</div>
                 </div>
                 <div className="py-4 px-6 border-t border-primary-soft flex">
-                  <div className="w-[300px] font-bold">Autheur</div>
+                  <div className="w-[175px] md:w-[300px] font-bold">Auteur</div>
                   <div className="flex-1 opacity-70">
-                    {book.author || "Non precise"}
+                    {item.author || "Non precise"}
                   </div>
                 </div>
                 <div className="py-4 px-6 border-t border-primary-soft flex">
-                  <div className="w-[300px] font-bold">ISBN</div>
+                  <div className="w-[175px] md:w-[300px] font-bold">ISBN</div>
                   <div className="flex-1 opacity-70">
-                    {book.isbn || "Non precise"}
+                    {item.isbn || "Non precise"}
                   </div>
                 </div>
                 <div className="py-4 px-6 border-t border-primary-soft flex">
-                  <div className="w-[300px] font-bold">Langue</div>
+                  <div className="w-[175px] md:w-[300px] font-bold">Langue</div>
                   <div className="flex-1 opacity-70">
-                    {book.language || "Non precise"}
+                    {item.language || "Non precise"}
                   </div>
                 </div>
                 <div className="py-4 px-6 border-t border-primary-soft flex">
-                  <div className="w-[300px] font-bold">Format</div>
+                  <div className="w-[175px] md:w-[300px] font-bold">Format</div>
                   <div className="flex-1 opacity-70">
-                    Paper back, {book.pages?.toString() || "Non precise"} Pages
+                    Paper back, {item.pages?.toString() || "Non precise"} Pages
                   </div>
                 </div>
                 <div className="py-4 px-6 border-t border-primary-soft flex">
-                  <div className="w-[300px] font-bold">Date de publication</div>
+                  <div className="w-[175px] md:w-[300px] font-bold">
+                    Date de publication
+                  </div>
                   <div className="flex-1 opacity-70">
-                    {book.date || "Non precise"}
+                    {item.date || "Non precise"}
                   </div>
                 </div>
                 <div className="py-4 px-6 border-t border-primary-soft flex">
-                  <div className="w-[300px] font-bold">Edition</div>
+                  <div className="w-[175px] md:w-[300px] font-bold">
+                    Edition
+                  </div>
                   <div className="flex-1 opacity-70">
-                    {book.edition || "Non precise"}
+                    {item.edition || "Non precise"}
                   </div>
                 </div>
                 <div className="py-4 px-6 border-t border-primary-soft flex">
-                  <div className="w-[300px] font-bold">Mots cles</div>
+                  <div className="w-[175px] md:w-[300px] font-bold">
+                    Mots cles
+                  </div>
                   <div className="flex-1 opacity-70 space-x-4">
                     {TAGS.filter((bdTag) =>
-                      book.tags.some((tag) => tag.tagId === bdTag.id)
+                      item.tags.some((tag) => tag.tagId === bdTag.id)
                     ).map((tag) => (
                       <span
                         className="p-2 text-xs rounded-xl bg-primary/15 text-primary font-bold"
@@ -253,12 +259,14 @@ export default async function page({
               </div>
             ) : (
               <div className="text-lg">
-                {book.files.map((f, k) => (
+                {item.files.map((f, k) => (
                   <div
                     className="py-4 px-6 border-t border-primary-soft flex"
                     key={k}
                   >
-                    <div className="w-[300px] font-bold">Module {k + 1}</div>
+                    <div className="w-[175px] md:w-[300px] font-bold">
+                      Module {k + 1}
+                    </div>
                     <div className="flex-1 opacity-70">
                       {f.title || "Cour " + (k + 1)}
                     </div>
@@ -269,12 +277,12 @@ export default async function page({
           </div>
           <div className="space-y-6 max-w-[600px] w-full">
             <h1 className=" font-bold text-4xl sm:text-5xl lg:text-6xl text-balance">
-              {book.categoryId === 1
+              {item.categoryId === 1
                 ? "Formations similaires"
                 : "Livres similaires"}
             </h1>
             <div className="space-y-4">
-              {book.category.items.map((i, k) => (
+              {item.category.items.map((i, k) => (
                 <div className="flex gap-4" key={k}>
                   <Image
                     src={i.cover}
@@ -287,7 +295,7 @@ export default async function page({
                     <div>
                       <h1 className="font-bold">{i.title}</h1>
                       <div className="text-sm  text-primary">
-                        {book.category.name}
+                        {item.category.name}
                       </div>
                     </div>
                     <div className="flex gap-2 items-center font-bold text-xl text-[#FF754C]">
@@ -307,7 +315,7 @@ export default async function page({
                     </div>
                     <div className="font-bold">{i.price} FCFA</div>
                     <Link
-                      href={"/book/" + i.id.toString() + "/buy"}
+                      href={"/items/" + i.id.toString() + "/buy"}
                       className="text-primary"
                     >
                       Acheter maintenant

@@ -1,17 +1,21 @@
+"use client";
 import { FunctionComponent } from "react";
 import { cn } from "@/lib/utils";
-import { BookCardProps } from "./ui/book-card";
+import { ItemCardProps } from "./ui/item-card";
 import paymentImage from "@/assets/images/payment-methods.png";
 import { Button } from "./ui/button";
 import Image from "next/image";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+// import PhoneInput from "react-phone-number-input";
 export type CommandModalProps = {
-  book: BookCardProps;
+  item: ItemCardProps;
   isOpen: boolean;
-  onClose: () => void;
+  onClose?: () => void;
 };
 
 export const CommandModal: FunctionComponent<CommandModalProps> = ({
-  book,
+  item,
   isOpen,
   onClose,
 }) => {
@@ -68,18 +72,18 @@ export const CommandModal: FunctionComponent<CommandModalProps> = ({
             <div className="text-white text-right">
               <div className="text-sm font-medium">Total à payer</div>
               <div className="">
-                {book.discount_percentage && book.discount_percentage > 0 && (
+                {item.discount_percentage && item.discount_percentage > 0 && (
                   <span className="text-[#AAAAAA] text-sm text-ral line-through">
-                    {book.price} FCFA
+                    {item.price} FCFA
                   </span>
                 )}
                 <b className="text-lg">
-                  {book.discount_percentage && book.discount_percentage > 0
+                  {item.discount_percentage && item.discount_percentage > 0
                     ? Math.ceil(
-                        book.price -
-                          (book.price * book.discount_percentage) / 100
+                        item.price -
+                          (item.price * item.discount_percentage) / 100
                       )
-                    : book.price}{" "}
+                    : item.price}{" "}
                   FCFA
                 </b>
               </div>
@@ -87,7 +91,7 @@ export const CommandModal: FunctionComponent<CommandModalProps> = ({
           </div>
           <div className="p-6 lg:p-8 flex flex-col justify-between flex-1">
             <div className="pb-6 lg:pb-8 border-b border-primary-soft space-y-4 flex items-center flex-col">
-              {/* <div className="font-bold">{book.title}</div> */}
+              {/* <div className="font-bold">{item.title}</div> */}
               <Image
                 width={1920}
                 height={1080}
@@ -97,7 +101,20 @@ export const CommandModal: FunctionComponent<CommandModalProps> = ({
               />
               <div>Paiement par mobile</div>
             </div>
-            <div className="h-full"></div>
+            <div className="h-full flex items-center">
+              <div className="space-y-2 w-full">
+                <Label>
+                  Numero de telephone<span className="text-red-500">*</span>
+                </Label>
+                <Input type="tel" name="phone" className="w-full" />
+              </div>
+              {/* <PhoneInput
+                international
+                defaultCountry="RU"
+                value={value}
+                onChange={setValue}
+              /> */}
+            </div>
             <div>
               <Button variant="secondary" className="w-full">
                 Payer

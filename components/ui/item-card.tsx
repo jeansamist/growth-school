@@ -1,10 +1,10 @@
 import { FunctionComponent } from "react";
-import placeholder from "@/assets/images/book-placeholder.png";
+import placeholder from "@/assets/images/item-placeholder.png";
 import { Button } from "./button";
 import Image from "next/image";
 import { Eye } from "lucide-react";
 import Link from "next/link";
-export type BookCardProps = {
+export type ItemCardProps = {
   id?: number; // not require
   cover?: string;
   discount_percentage?: number;
@@ -13,10 +13,10 @@ export type BookCardProps = {
   price: number;
   tags: { name: string; id: number }[];
   openModal?: () => void;
-  setBook?: React.Dispatch<React.SetStateAction<BookCardProps>>;
+  setItem?: React.Dispatch<React.SetStateAction<ItemCardProps>>;
 };
 
-export const BookCard: FunctionComponent<BookCardProps> = ({
+export const ItemCard: FunctionComponent<ItemCardProps> = ({
   id,
   cover,
   discount_percentage,
@@ -25,7 +25,7 @@ export const BookCard: FunctionComponent<BookCardProps> = ({
   price,
   tags,
   openModal,
-  setBook,
+  setItem,
 }) => {
   return (
     <div className={"w-full"}>
@@ -48,7 +48,7 @@ export const BookCard: FunctionComponent<BookCardProps> = ({
         <div className="flex justify-between items-center">
           <p className="text-sm text-primary space-x-2">
             {tags.map((tag, i) => (
-              <a key={i} href={"/books?tag=" + tag.id.toString()}>
+              <a key={i} href={"/items?tag=" + tag.id.toString()}>
                 {tag.name}
               </a>
             ))}
@@ -86,9 +86,9 @@ export const BookCard: FunctionComponent<BookCardProps> = ({
       <div className="pt-4 flex gap-2">
         <Button
           onClick={() => {
-            if (setBook && openModal) {
+            if (setItem && openModal) {
               openModal();
-              setBook({
+              setItem({
                 cover,
                 discount_percentage,
                 average_rate,
@@ -104,7 +104,7 @@ export const BookCard: FunctionComponent<BookCardProps> = ({
           Acheter
         </Button>
         <Link
-          href={"/book/" + id?.toString()}
+          href={"/items/" + id?.toString()}
           className="w-14 h-14 border flex items-center justify-center rounded-xl opacity-70"
         >
           <Eye />

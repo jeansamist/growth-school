@@ -14,7 +14,7 @@ export const CategoryCard: FunctionComponent<CategoryCardProps> = ({
 }) => {
   return (
     <a
-      href={"/books?category=" + id?.toString()}
+      href={"/items?category=" + id?.toString()}
       className={"rounded-3xl bg-primary-soft"}
     >
       <Image

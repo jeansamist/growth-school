@@ -17,10 +17,10 @@ export const HomeHero: FunctionComponent = () => {
         <div className="px-6 lg:px-12 xl:px-24 w-full lg:w-2/3 text-center lg:text-left space-y-8">
           <div className="space-y-4">
             <h1 className=" font-bold text-4xl sm:text-5xl lg:text-6xl text-balance">
-              Accédez aux meilleures formations , Ebooks et Templates
+              Accédez aux meilleures formations , E-books et Templates
             </h1>
             <p className=" leading-normal lg:w-3/5 text-xl">
-              Des formations de qualité, des modèles efficaces et des ebooks
+              Des formations de qualité, des modèles efficaces et des e-books
               complets pour booster votre succès
             </p>
           </div>

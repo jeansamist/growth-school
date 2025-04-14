@@ -1,22 +1,22 @@
 "use client";
 import { FunctionComponent, useState } from "react";
 import { CommandModal } from "./command-modal";
-import { BookCardProps } from "./ui/book-card";
+import { ItemCardProps } from "./ui/item-card";
 
 export type DetailPageModalProps = {
-  book: BookCardProps;
+  item: ItemCardProps;
 };
 
 export const DetailPageModal: FunctionComponent<DetailPageModalProps> = ({
-  book,
+  item,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [bookState, setBook] = useState<BookCardProps>(book);
+  const [itemState, setItem] = useState<ItemCardProps>(item);
   return (
     <div className={""}>
       <CommandModal
         isOpen={isOpen}
-        book={bookState}
+        item={itemState}
         onClose={() => setIsOpen(false)}
       />
     </div>

@@ -7,7 +7,7 @@ const categoryData: Prisma.CategoryCreateInput[] = [
       "https://images.pexels.com/photos/8472795/pexels-photo-8472795.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   },
   {
-    name: "Ebook",
+    name: "E-book",
     cover:
       "https://images.pexels.com/photos/1329571/pexels-photo-1329571.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   },

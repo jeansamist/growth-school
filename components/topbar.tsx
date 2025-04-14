@@ -22,7 +22,7 @@ export const Topbar: FunctionComponent = () => {
     },
     {
       title: "E-books",
-      href: "/ebooks",
+      href: "/e-books",
       isActive: false,
     },
     {

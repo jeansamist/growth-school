@@ -16,7 +16,7 @@ export const ShopSection: FunctionComponent<{
         </h1>
         <p className=" leading-normal lg:w-3/5 text-xl mx-auto">
           Trouvez votre prochaine compétence gagnante: Explorez notre catalogue
-          de formations & ebooks
+          de formations & e-books
         </p>
       </div>
       <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10">
