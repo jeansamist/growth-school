@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import stars from "@/assets/images/stars.png";
 import { CameraIcon, File } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { DetailPageModal } from "@/components/details-page-modal";
 import { Metadata } from "next";
 
@@ -178,7 +178,12 @@ export default async function page({
                   : item.price}{" "}
                 FCFA
               </h1>
-              <Button variant={"secondary"}>Acheter maintenant</Button>
+              <Link
+                href={"/items/" + itemId + "/buy"}
+                className={buttonVariants({ variant: "secondary" })}
+              >
+                Acheter maintenant
+              </Link>
             </div>
             <div className="border-2 border-gray-400/70 border-dashed mb-6"></div>
             <div className="px-4 py-2 font-bold rounded-xl bg-primary/15 text-sm mb-6">
