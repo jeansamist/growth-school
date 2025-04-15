@@ -5,12 +5,12 @@ import React from "react";
 export default function page() {
   return (
     <div className="px-6 lg:px-12 mx-auto py-16 space-y-12 !pt-6">
-      <div className="space-y-4 text-center">
+      <div className="space-y-4 text-center flex flex-col items-center">
         <Check size={112} className="text-primary" />
         <h1 className=" font-bold text-4xl sm:text-5xl lg:text-[50px] text-balance">
           Paiement effectué avec succès
         </h1>
-        <p className=" leading-normal lg:w-3/5 text-xl">
+        <p className=" leading-normal lg:w-3/5 text-xl mx-auto">
           Vous avez recus le lien de votre achat directement sur WhatsApp.{" "}
           <Link href={"/"} className="text-primary underline">
             Je n'ai pas recus de message
