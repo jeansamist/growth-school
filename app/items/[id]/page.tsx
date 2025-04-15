@@ -169,7 +169,7 @@ export default async function page({
             )}
             <div className="border-2 border-gray-400/70 border-dashed"></div>
             <div className="w-full flex justify-between items-center">
-              <h1 className=" font-bold text-4xl sm:text-5xl lg:text-6xl text-balance text-primary">
+              <h1 className=" font-bold text-2xl sm:text-5xl lg:text-6xl text-balance text-primary">
                 {item.discount && (item.discount / item.price) * 100 > 0
                   ? Math.ceil(
                       item.price -
@@ -178,7 +178,7 @@ export default async function page({
                   : item.price}{" "}
                 {item.discount && (
                   <span className="text-[#AAAAAA] text-ral line-through">
-                    {item.price} FCFA
+                    {item.price}
                   </span>
                 )}{" "}
                 FCFA
