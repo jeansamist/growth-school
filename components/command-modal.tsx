@@ -105,7 +105,8 @@ export const CommandModal: FunctionComponent<CommandModalProps> = ({
                     ? item.price - item.price * (item.discount_percentage / 100)
                     : item.price,
                   currency: "XAF",
-                  callback: "https://growth-school-sooty.vercel.app",
+                  callback:
+                    "https://growth-school-sooty.vercel.app/payment-success",
                   customer: {
                     phone: "+237" + phone,
                   },
