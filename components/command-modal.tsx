@@ -101,7 +101,9 @@ export const CommandModal: FunctionComponent<CommandModalProps> = ({
               }>(
                 "https://api.notchpay.co/payments",
                 {
-                  amount: item.price,
+                  amount: item.discount_percentage
+                    ? item.price - item.price * (item.discount_percentage / 100)
+                    : item.price,
                   currency: "XAF",
                   callback: "https://growth-school-sooty.vercel.app",
                   customer: {
