@@ -1,5 +1,5 @@
 "use client";
-import { FunctionComponent } from "react";
+import { FormEventHandler, FunctionComponent } from "react";
 import { cn } from "@/lib/utils";
 import { ItemCardProps } from "./ui/item-card";
 import paymentImage from "@/assets/images/payment-methods.png";
@@ -7,6 +7,7 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
+import { axiosInstance } from "@/lib/axios-instance";
 // import PhoneInput from "react-phone-number-input";
 export type CommandModalProps = {
   item: ItemCardProps;
@@ -89,7 +90,40 @@ export const CommandModal: FunctionComponent<CommandModalProps> = ({
               </div>
             </div>
           </div>
-          <div className="p-6 lg:p-8 flex flex-col justify-between flex-1">
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const formData = new FormData(e.currentTarget);
+              const phone = formData.get("phone") as string;
+              const transaction = await axiosInstance.post<{
+                status: "Accepted" | false;
+                authorization_url: string;
+              }>(
+                "https://api.notchpay.co/payments",
+                {
+                  amount: item.price,
+                  currency: "XAF",
+                  callback: "https://growth-school-sooty.vercel.app",
+                  customer: {
+                    phone: "+237" + phone,
+                  },
+                },
+                {
+                  headers: {
+                    Authorization:
+                      "pk_test.IVpvcz4hnzbLhpVOsCylN5tn886fHUc2GVMKQWm3MpGeeyedyYhji6QbfUL5KD1Yvi6sAKIkpRAs2BD7HoOh4HYzrSmWcYZBfOp6wJYnp0xLNhRP7B30KpWDKg1c6",
+                  },
+                }
+              );
+              if (transaction.data.status === "Accepted") {
+                window.location.href = transaction.data.authorization_url;
+              } else {
+                alert("Une erreur s'est produite");
+              }
+              // Now you have the phone number in the phone variable
+            }}
+            className="p-6 lg:p-8 flex flex-col justify-between flex-1"
+          >
             <div className="pb-6 lg:pb-8 border-b border-primary-soft space-y-4 flex items-center flex-col">
               {/* <div className="font-bold">{item.title}</div> */}
               <Image
@@ -120,7 +154,7 @@ export const CommandModal: FunctionComponent<CommandModalProps> = ({
                 Payer
               </Button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
