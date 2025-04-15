@@ -108,7 +108,7 @@ export const CommandModal: FunctionComponent<CommandModalProps> = ({
                   callback:
                     "https://growth-school-sooty.vercel.app/payment-success",
                   customer: {
-                    phone: "+237" + phone,
+                    phone: phone,
                   },
                 },
                 {
