@@ -176,6 +176,11 @@ export default async function page({
                         (item.price * (item.discount / item.price) * 100) / 100
                     )
                   : item.price}{" "}
+                {item.discount && (
+                  <span className="text-[#AAAAAA] text-ral line-through">
+                    {item.price} FCFA
+                  </span>
+                )}{" "}
                 FCFA
               </h1>
               <Link
