@@ -168,20 +168,19 @@ export default async function page({
               </div>
             )}
             <div className="border-2 border-gray-400/70 border-dashed"></div>
-            <div className="w-full flex justify-between items-center">
+            <div className="w-full flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6">
               <h1 className=" font-bold text-2xl sm:text-5xl lg:text-6xl text-balance text-primary">
                 {item.discount && (item.discount / item.price) * 100 > 0
                   ? Math.ceil(
                       item.price -
                         (item.price * (item.discount / item.price) * 100) / 100
-                    )
-                  : item.price}{" "}
+                    ).toString() + " FCFA"
+                  : item.price + " FCFA"}
                 {item.discount && (
-                  <span className="text-[#AAAAAA] text-ral line-through">
-                    {item.price}
+                  <span className="text-[#AAAAAA] text-lg text text-ral line-through">
+                    {item.price} FCFA
                   </span>
-                )}{" "}
-                FCFA
+                )}
               </h1>
               <Link
                 href={"/items/" + itemId + "/buy"}
