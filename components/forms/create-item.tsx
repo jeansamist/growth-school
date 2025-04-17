@@ -76,7 +76,7 @@ export const CreateItem: FunctionComponent<CreateItemProps> = ({
             ))}
           </select>
         </div>
-        {categoryId === 1 && (
+        {categoryId === 2 && (
           <>
             <div className="space-y-2">
               <Label>
@@ -128,7 +128,7 @@ export const CreateItem: FunctionComponent<CreateItemProps> = ({
         </div>
 
         <div className="space-y-2">
-          <Label>Lien vers l'ebook ou le template</Label>
+          <Label>Lien</Label>
           <Input
             type="texte"
             name="file_link"
