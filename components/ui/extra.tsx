@@ -1,6 +1,6 @@
+"use client";
 import axios from "axios";
 import { FunctionComponent } from "react";
-import { ItemCardProps } from "./item-card";
 import { Item } from "@/app/generated/prisma";
 import { Button } from "./button";
 
