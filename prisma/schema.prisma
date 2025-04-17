@@ -34,6 +34,7 @@ model Item {
   author      String?
   isbn        String?
   language    String?
+  modules     String?
   pages       Int?
   edition     String?
   date        String?
