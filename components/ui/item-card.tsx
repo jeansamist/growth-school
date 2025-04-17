@@ -4,6 +4,7 @@ import { Button } from "./button";
 import Image from "next/image";
 import { Eye } from "lucide-react";
 import Link from "next/link";
+import axios from "axios";
 export type ItemCardProps = {
   id?: number; // not require
   cover?: string;
@@ -83,7 +84,43 @@ export const ItemCard: FunctionComponent<ItemCardProps> = ({
           </span>
         )}
       </div>
-      <div className="pt-4 flex gap-2">
+      <form
+        onSubmit={async (e) => {
+          e.preventDefault();
+          const formData = new FormData(e.currentTarget);
+          const phone = formData.get("phone") as string;
+          const transaction = await axios.post<{
+            status: "Accepted" | false;
+            authorization_url: string;
+          }>(
+            "https://api.notchpay.co/payments",
+            {
+              amount: discount_percentage
+                ? price - price * (discount_percentage / 100)
+                : price,
+              currency: "XAF",
+              callback:
+                "https://growth-schools.com/payment-success?itemid=" +
+                id?.toString(),
+              customer: {
+                phone: phone,
+              },
+            },
+            {
+              headers: {
+                Authorization:
+                  "pk_test.IVpvcz4hnzbLhpVOsCylN5tn886fHUc2GVMKQWm3MpGeeyedyYhji6QbfUL5KD1Yvi6sAKIkpRAs2BD7HoOh4HYzrSmWcYZBfOp6wJYnp0xLNhRP7B30KpWDKg1c6",
+              },
+            }
+          );
+          if (transaction.data.status === "Accepted") {
+            window.location.href = transaction.data.authorization_url;
+          } else {
+            alert("Une erreur s'est produite");
+          }
+        }}
+        className="pt-4 flex gap-2"
+      >
         <Button
           onClick={() => {
             if (setItem && openModal) {
@@ -109,7 +146,7 @@ export const ItemCard: FunctionComponent<ItemCardProps> = ({
         >
           <Eye />
         </Link>
-      </div>
+      </form>
     </div>
   );
 };
