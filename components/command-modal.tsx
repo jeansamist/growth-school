@@ -1,5 +1,5 @@
 "use client";
-import { FormEventHandler, FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 import { cn } from "@/lib/utils";
 import { ItemCardProps } from "./ui/item-card";
 import paymentImage from "@/assets/images/payment-methods.png";
@@ -7,7 +7,7 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
-import { axiosInstance } from "@/lib/axios-instance";
+import axios from "axios";
 // import PhoneInput from "react-phone-number-input";
 export type CommandModalProps = {
   item: ItemCardProps;
@@ -95,7 +95,7 @@ export const CommandModal: FunctionComponent<CommandModalProps> = ({
               e.preventDefault();
               const formData = new FormData(e.currentTarget);
               const phone = formData.get("phone") as string;
-              const transaction = await axiosInstance.post<{
+              const transaction = await axios.post<{
                 status: "Accepted" | false;
                 authorization_url: string;
               }>(

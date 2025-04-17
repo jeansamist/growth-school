@@ -21,7 +21,7 @@ export async function createItem(
   coverForm.append("file", cover);
 
   const resCoverRelativePath = await axiosInstance.post<{
-    statut: boolean;
+    status: boolean;
     data: { path: string };
   }>("/upload", coverForm, {
     headers: {
@@ -29,23 +29,13 @@ export async function createItem(
     },
   });
 
-  if (!resCoverRelativePath.data.statut) {
-    console.log(resCoverRelativePath);
+  if (!resCoverRelativePath.data.status) {
     return { errors: ["We cannot upload cover file"] };
   }
 
   const coverPath =
-    "https://growth-school-adonisjs.onrender.com/" +
-    resCoverRelativePath.data.data.path;
+    "https://server11.vps.webdock.cloud" + resCoverRelativePath.data.data.path;
 
-  let filesRelativePaths: string[] = [];
-  if (formData.get("files_links")) {
-    const filesLinks = formData.getAll("files_links") as unknown as string;
-    filesRelativePaths = filesLinks.split(",");
-  } else {
-    const fileLink = formData.getAll("file_link") as unknown as string;
-    filesRelativePaths = [fileLink];
-  }
   // store tags
   const tags = formData.get("tags") as string;
   const tagArray = tags.split(",");
@@ -67,6 +57,7 @@ export async function createItem(
   const rawPages = parseInt(formData.get("pages") as string);
   const rawEdition = formData.get("edition") as string;
   const rawDate = formData.get("date") as string;
+  const rawFile = formData.get("file_link") as string;
 
   if (!rawTitle || isNaN(rawPrice) || isNaN(rawCategoryId)) {
     return { errors: ["Invalid title, price or category."] };
@@ -101,16 +92,12 @@ export async function createItem(
         },
       },
       files: {
-        createMany: {
-          data: filesRelativePaths.map((file, id) => ({
-            url: file,
-            title: id.toString() + " - " + rawTitle, // fallback title
-          })),
+        create: {
+          url: rawFile,
+          title: rawTitle, // fallback title
         },
       },
     },
   });
-
-  console.log(d);
   redirect(`/`);
 }

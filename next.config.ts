@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
       "m.media-amazon.com",
       "growth-school-adonisjs.onrender.com",
       "images.pexels.com",
+      "server11.vps.webdock.cloud",
     ],
   },
   experimental: {

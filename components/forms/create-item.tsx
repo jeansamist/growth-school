@@ -76,18 +76,18 @@ export const CreateItem: FunctionComponent<CreateItemProps> = ({
             ))}
           </select>
         </div>
+        <div className="space-y-2">
+          <Label>
+            Tags<span className="text-red-500">*</span>
+          </Label>
+          <Input type="text" name="tags" className="w-full" />
+          <div className="text-right">
+            Chaques tag doit être séparé du suivant par une virgule. Exemple:
+            javascript,react,nodejs
+          </div>
+        </div>
         {categoryId === 2 && (
           <>
-            <div className="space-y-2">
-              <Label>
-                Tags<span className="text-red-500">*</span>
-              </Label>
-              <Input type="text" name="tags" className="w-full" />
-              <div className="text-right">
-                Chaques tag doit être séparé du suivant par une virgule.
-                Exemple: javascript,react,nodejs
-              </div>
-            </div>
             <div className="space-y-2">
               <Label>Nom de l'autheur</Label>
               <Input type="text" name="author" className="w-full" />

@@ -37,7 +37,7 @@ export default async function page({
     }
     const phone = data.get("phone") as string;
     await axios.post(
-      "https://wa-bot-uivc.onrender.com/send",
+      "https://server11.vps.webdock.cloud/send",
       {
         phone: phone,
         key: "Tpa1Ow1s6ZnaUM-mUwaJdaVLhJrxbQNH",
