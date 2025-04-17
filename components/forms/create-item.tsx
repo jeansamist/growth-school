@@ -76,40 +76,44 @@ export const CreateItem: FunctionComponent<CreateItemProps> = ({
             ))}
           </select>
         </div>
-        <div className="space-y-2">
-          <Label>
-            Tags<span className="text-red-500">*</span>
-          </Label>
-          <Input type="text" name="tags" className="w-full" />
-          <div className="text-right">
-            Chaques tag doit être séparé du suivant par une virgule. Exemple:
-            javascript,react,nodejs
-          </div>
-        </div>
-        <div className="space-y-2">
-          <Label>Nom de l'autheur</Label>
-          <Input type="text" name="author" className="w-full" />
-        </div>
-        <div className="space-y-2">
-          <Label>ISBN</Label>
-          <Input type="text" name="isbn" className="w-full" />
-        </div>
-        <div className="space-y-2">
-          <Label>Langue</Label>
-          <Input type="text" name="language" className="w-full" />
-        </div>
-        <div className="space-y-2">
-          <Label>Nombre de pages</Label>
-          <Input type="number" name="pages" className="w-full" />
-        </div>
-        <div className="space-y-2">
-          <Label>Edition</Label>
-          <Input type="text" name="edition" className="w-full" />
-        </div>
-        <div className="space-y-2">
-          <Label>Date de publication</Label>
-          <Input type="date" name="date" className="w-full" />
-        </div>
+        {categoryId === 1 && (
+          <>
+            <div className="space-y-2">
+              <Label>
+                Tags<span className="text-red-500">*</span>
+              </Label>
+              <Input type="text" name="tags" className="w-full" />
+              <div className="text-right">
+                Chaques tag doit être séparé du suivant par une virgule.
+                Exemple: javascript,react,nodejs
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label>Nom de l'autheur</Label>
+              <Input type="text" name="author" className="w-full" />
+            </div>
+            <div className="space-y-2">
+              <Label>ISBN</Label>
+              <Input type="text" name="isbn" className="w-full" />
+            </div>
+            <div className="space-y-2">
+              <Label>Langue</Label>
+              <Input type="text" name="language" className="w-full" />
+            </div>
+            <div className="space-y-2">
+              <Label>Nombre de pages</Label>
+              <Input type="number" name="pages" className="w-full" />
+            </div>
+            <div className="space-y-2">
+              <Label>Edition</Label>
+              <Input type="text" name="edition" className="w-full" />
+            </div>
+            <div className="space-y-2">
+              <Label>Date de publication</Label>
+              <Input type="date" name="date" className="w-full" />
+            </div>
+          </>
+        )}
         {/* <div className="space-y-2">
             <Label>
               Description<span className="text-red-500">*</span>
