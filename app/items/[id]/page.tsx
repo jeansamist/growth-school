@@ -4,10 +4,11 @@ import Link from "next/link";
 import React from "react";
 import stars from "@/assets/images/stars.png";
 import { CameraIcon, File } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { DetailPageModal } from "@/components/details-page-modal";
 import { Metadata } from "next";
 import axios from "axios";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Details | Growth school",
@@ -200,7 +201,7 @@ export default async function page({
                   }
                 );
                 if (transaction.data.status === "Accepted") {
-                  window.location.href = transaction.data.authorization_url;
+                  redirect(transaction.data.authorization_url);
                 } else {
                   alert("Une erreur s'est produite");
                 }

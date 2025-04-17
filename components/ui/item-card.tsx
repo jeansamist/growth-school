@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Eye } from "lucide-react";
 import Link from "next/link";
 import axios from "axios";
+import { redirect } from "next/navigation";
 export type ItemCardProps = {
   id?: number; // not require
   cover?: string;
@@ -114,7 +115,7 @@ export const ItemCard: FunctionComponent<ItemCardProps> = ({
             }
           );
           if (transaction.data.status === "Accepted") {
-            window.location.href = transaction.data.authorization_url;
+            redirect(transaction.data.authorization_url);
           } else {
             alert("Une erreur s'est produite");
           }
