@@ -126,32 +126,16 @@ export const CreateItem: FunctionComponent<CreateItemProps> = ({
           </Label>
           <Input type="file" name="cover" className="w-full" />
         </div>
-        {categoryId === 1 ? (
-          <div className="space-y-2">
-            <Label>
-              Lien(s) vers les videos<span className="text-red-500">*</span>
-            </Label>
-            <Textarea
-              name="files_links"
-              placeholder="https://"
-              className="w-full"
-            />
-            <div className="text-right">
-              Chaques lien doit être séparé du suivant par une virgule. Exemple:
-              javascript,react,nodejs
-            </div>
-          </div>
-        ) : (
-          <div className="space-y-2">
-            <Label>Lien vers l'ebook ou le template</Label>
-            <Input
-              type="texte"
-              name="file_link"
-              placeholder="https://"
-              className="w-full"
-            />
-          </div>
-        )}
+
+        <div className="space-y-2">
+          <Label>Lien vers l'ebook ou le template</Label>
+          <Input
+            type="texte"
+            name="file_link"
+            placeholder="https://"
+            className="w-full"
+          />
+        </div>
         <Button className="w-full">Ajouter</Button>
       </form>
     </>
