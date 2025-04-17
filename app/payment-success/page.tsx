@@ -63,13 +63,15 @@ ${item?.files.map((file) => file.url).join(" - ")}`,
         <p className=" leading-normal lg:w-3/5 text-xl mx-auto">
           Entrez votre contact WhatsApp pour recevoir le lien de téléchargement
         </p>
-        <form action={sendMessage} className="space-y-2 w-full">
-          <Label>
-            Numero de telephone<span className="text-red-500">*</span>
-          </Label>
-          <input type="hidden" name="id" value={id.toString()} />
-          <Input type="tel" name="phone" className="max-w-[260px] w-full" />
-          <Button>Envoyer</Button>
+        <form action={sendMessage} className="space-y-2 max-w-[260px] w-full">
+          <div className="space-y-4">
+            <Label>
+              Numero de telephone<span className="text-red-500">*</span>
+            </Label>
+            <input type="hidden" name="id" value={id.toString()} />
+            <Input type="tel" name="phone" className=" w-full" />
+          </div>
+          <Button className="w-full">Envoyer</Button>
         </form>
       </div>
     </div>
