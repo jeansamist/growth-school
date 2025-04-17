@@ -39,7 +39,7 @@ export default async function page({
     await axios.post(
       "https://server11.vps.webdock.cloud/send",
       {
-        phone: phone,
+        number: phone,
         key: "Tpa1Ow1s6ZnaUM-mUwaJdaVLhJrxbQNH",
         message: `*Nouveau paiement de ${item?.title}: ${item?.price} FCFA*
 Lien(s) de telechargement:
