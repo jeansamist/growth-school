@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import stars from "@/assets/images/stars.png";
-import { CameraIcon, File } from "lucide-react";
+import { CameraIcon, File, MoveIcon, Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DetailPageModal } from "@/components/details-page-modal";
 import { Metadata } from "next";
@@ -160,13 +160,15 @@ export default async function page({
               <div className="flex gap-6 items-center font-bold">
                 <div className="flex items-center gap-6">
                   <File className="text-secondary" size={24} />
-                  <span>{item.files.length.toString()} Modules</span>
+                  <span>
+                    {item.modules?.split(",").length.toString()} Modules
+                  </span>
                 </div>
                 <div className="flex items-center gap-6">
                   {item.categoryId === 1 && (
-                    <CameraIcon className="text-secondary" size={24} />
+                    <Video className="text-secondary" size={24} />
                   )}
-                  <span>{item.files.length.toString()} Modules</span>
+                  <span>Format video</span>
                 </div>
               </div>
             )}
@@ -251,7 +253,7 @@ export default async function page({
               </div>
             ) : (
               <div className="text-lg">
-                {item.files.map((f, k) => (
+                {item.modules?.split(",").map((f, k) => (
                   <div
                     className="py-4 px-6 border-t border-primary-soft flex"
                     key={k}
@@ -260,7 +262,7 @@ export default async function page({
                       Module {k + 1}
                     </div>
                     <div className="flex-1 opacity-70">
-                      {f.title || "Cour " + (k + 1)}
+                      {f || "Cour " + (k + 1)}
                     </div>
                   </div>
                 ))}

@@ -58,6 +58,7 @@ export async function createItem(
   const rawEdition = formData.get("edition") as string;
   const rawDate = formData.get("date") as string;
   const rawFile = formData.get("file_link") as string;
+  const rawModules = formData.get("modules") as string;
 
   if (!rawTitle || isNaN(rawPrice) || isNaN(rawCategoryId)) {
     return { errors: ["Invalid title, price or category."] };
@@ -74,6 +75,7 @@ export async function createItem(
     language: rawLanguage || "",
     pages: isNaN(rawPages) ? 0 : rawPages,
     edition: rawEdition || "",
+    modules: rawModules || "",
     date: rawDate || "",
   };
 
