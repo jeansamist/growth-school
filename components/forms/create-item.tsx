@@ -1,5 +1,5 @@
 "use client";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -17,6 +17,7 @@ export const CreateItem: FunctionComponent<CreateItemProps> = ({
   const initialFormState: { errors: string[] } = {
     errors: [],
   };
+  const [categoryId, setCategoryId] = useState<number>(categories[0].id);
 
   const [formState, formAction] = useActionState<
     { errors: string[] },
@@ -62,6 +63,9 @@ export const CreateItem: FunctionComponent<CreateItemProps> = ({
             Categorie<span className="text-red-500">*</span>
           </Label>
           <select
+            onChange={(e) => {
+              setCategoryId(parseInt(e.target.value));
+            }}
             name="category_id"
             className="w-full h-12 border shadow-sm border-primary-soft rounded-md px-6 py-1 outline-none focus:outline-none focus:border-primary transition-colors font-medium placeholder:transition-colors"
           >
@@ -78,7 +82,7 @@ export const CreateItem: FunctionComponent<CreateItemProps> = ({
           </Label>
           <Input type="text" name="tags" className="w-full" />
           <div className="text-right">
-            Chaques tags doivent être séparés par une virgule. Exemple:
+            Chaques tag doit être séparé du suivant par une virgule. Exemple:
             javascript,react,nodejs
           </div>
         </div>
@@ -118,12 +122,32 @@ export const CreateItem: FunctionComponent<CreateItemProps> = ({
           </Label>
           <Input type="file" name="cover" className="w-full" />
         </div>
-        <div className="space-y-2">
-          <Label>
-            Fichier PDF du livre<span className="text-red-500">*</span>
-          </Label>
-          <Input type="file" name="files" className="w-full" multiple />
-        </div>
+        {categoryId === 1 ? (
+          <div className="space-y-2">
+            <Label>
+              Lien(s) vers les videos<span className="text-red-500">*</span>
+            </Label>
+            <Textarea
+              name="files_links"
+              placeholder="https://"
+              className="w-full"
+            />
+            <div className="text-right">
+              Chaques lien doit être séparé du suivant par une virgule. Exemple:
+              javascript,react,nodejs
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-2">
+            <Label>Lien vers l'ebook ou le template</Label>
+            <Input
+              type="texte"
+              name="file_link"
+              placeholder="https://"
+              className="w-full"
+            />
+          </div>
+        )}
         <Button className="w-full">Ajouter</Button>
       </form>
     </>

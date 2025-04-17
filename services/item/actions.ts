@@ -38,36 +38,14 @@ export async function createItem(
     "https://growth-school-adonisjs.onrender.com/" +
     resCoverRelativePath.data.data.path;
 
-  // Upload files one by one
-  const files = formData.getAll("files") as Blob[];
-  const filesRelativePaths = await Promise.all(
-    files.map(async (file) => {
-      if (!(file instanceof Blob)) {
-        throw new Error("One of the uploaded files is not valid.");
-      }
-
-      const fileForm = new FormData();
-      fileForm.append("file", file);
-
-      const response = await axiosInstance.post<{
-        statut: boolean;
-        data: { path: string };
-      }>("/upload", fileForm, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      if (!response.data.statut) {
-        throw new Error("Failed to upload a file");
-      }
-
-      return (
-        "https://growth-school-adonisjs.onrender.com/" + response.data.data.path
-      );
-    })
-  );
-
+  let filesRelativePaths: string[] = [];
+  if (formData.get("files_links")) {
+    const filesLinks = formData.getAll("files_links") as unknown as string;
+    filesRelativePaths = filesLinks.split(",");
+  } else {
+    const fileLink = formData.getAll("file_link") as unknown as string;
+    filesRelativePaths = [fileLink];
+  }
   // store tags
   const tags = formData.get("tags") as string;
   const tagArray = tags.split(",");

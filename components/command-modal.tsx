@@ -106,7 +106,8 @@ export const CommandModal: FunctionComponent<CommandModalProps> = ({
                     : item.price,
                   currency: "XAF",
                   callback:
-                    "https://growth-school-sooty.vercel.app/payment-success",
+                    "https://growth-schools.com/payment-success?itemid=" +
+                    item.id?.toString(),
                   customer: {
                     phone: phone,
                   },
