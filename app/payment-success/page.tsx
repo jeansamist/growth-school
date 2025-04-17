@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import prisma from "@/lib/prisma";
 import axios from "axios";
 import { Check } from "lucide-react";
+import { redirect } from "next/navigation";
 import React from "react";
 
 export default async function page({
@@ -41,9 +42,14 @@ export default async function page({
       {
         number: phone,
         key: "Tpa1Ow1s6ZnaUM-mUwaJdaVLhJrxbQNH",
-        message: `*Nouveau paiement de ${item?.title}: ${item?.price} FCFA*
-Lien(s) de telechargement:
-${item?.files.map((file) => file.url).join(" - ")}`,
+        message: `*🎉 Merci pour votre achat !*
+
+Votre lien de téléchargement est : ${item?.files
+          .map((file) => file.url)
+          .join(" - ")}
+Profitez bien de votre ebook/formation ! 😊
+
+Team Growthschool`,
       },
       {
         headers: {
@@ -51,6 +57,8 @@ ${item?.files.map((file) => file.url).join(" - ")}`,
         },
       }
     );
+
+    redirect("/");
   };
 
   return (

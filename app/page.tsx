@@ -3,6 +3,8 @@ import { FeatureItemSection } from "@/components/feature-item-section";
 import { HomeHero } from "@/components/home-hero";
 import { ShopSection } from "@/components/shop-section";
 import { TestimonialSection } from "@/components/testimonial-section";
+import { TrainingsSection } from "@/components/trainings-section";
+import { TrustSection } from "@/components/trust-section";
 import { ItemCardProps } from "@/components/ui/item-card";
 import prisma from "@/lib/prisma";
 import { Metadata } from "next";
@@ -19,26 +21,45 @@ export default async function Home() {
   }));
   const bdTags = await prisma.tag.findMany();
   const dbItems = await prisma.item.findMany({ include: { tags: true } });
-  const items: ItemCardProps[] = dbItems.map((item) => ({
-    id: item.id,
-    cover: item.cover,
-    discount_percentage: item.discount
-      ? (item.discount / item.price) * 100
-      : undefined,
-    average_rate: 5,
-    title: item.title,
-    price: item.price,
-    tags: bdTags
-      .filter((bdTag) => item.tags.some((tag) => tag.tagId === bdTag.id))
-      .map((tag) => ({ name: tag.name, id: tag.id })),
-  }));
+  const books: ItemCardProps[] = dbItems
+    .filter((b) => b.categoryId === 2)
+    .map((item) => ({
+      id: item.id,
+      cover: item.cover,
+      discount_percentage: item.discount
+        ? (item.discount / item.price) * 100
+        : undefined,
+      average_rate: 5,
+      title: item.title,
+      price: item.price,
+      tags: bdTags
+        .filter((bdTag) => item.tags.some((tag) => tag.tagId === bdTag.id))
+        .map((tag) => ({ name: tag.name, id: tag.id })),
+    }));
+  const tranings: ItemCardProps[] = dbItems
+    .filter((b) => b.categoryId === 1)
+    .map((item) => ({
+      id: item.id,
+      cover: item.cover,
+      discount_percentage: item.discount
+        ? (item.discount / item.price) * 100
+        : undefined,
+      average_rate: 5,
+      title: item.title,
+      price: item.price,
+      tags: bdTags
+        .filter((bdTag) => item.tags.some((tag) => tag.tagId === bdTag.id))
+        .map((tag) => ({ name: tag.name, id: tag.id })),
+    }));
   return (
     <>
       <HomeHero />
       <ShopSection categories={categories} />
-      <BestSellerSection items={items} />
+      <BestSellerSection books={books} />
       <FeatureItemSection />
       <TestimonialSection />
+      <TrainingsSection trainings={tranings} />
+      <TrustSection />
     </>
   );
 }

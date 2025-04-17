@@ -5,12 +5,12 @@ import { cn } from "@/lib/utils";
 import { CommandModal } from "./command-modal";
 
 export const BestSellerSection: FunctionComponent<{
-  items: ItemCardProps[];
-}> = ({ items }) => {
-  const pages = items.length / 6;
+  books: ItemCardProps[];
+}> = ({ books }) => {
+  const pages = books.length / 6;
   const pagesArray = Array.from({ length: pages }, (_, i) => i);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [item, setItem] = useState<ItemCardProps>(items[0]);
+  const [item, setItem] = useState<ItemCardProps>(books[0]);
   const [currentPage, setCurrentPage] = useState(0);
   return (
     <>
@@ -87,7 +87,7 @@ export const BestSellerSection: FunctionComponent<{
           </div>
         </div>
         <div className="w-full grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-6 gap-6 lg:gap-10">
-          {items.slice(currentPage * 6, (currentPage + 1) * 6).map((b, i) => (
+          {books.slice(currentPage * 6, (currentPage + 1) * 6).map((b, i) => (
             <ItemCard
               setItem={setItem}
               openModal={() => setIsOpen(true)}
