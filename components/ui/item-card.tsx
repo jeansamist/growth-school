@@ -110,7 +110,7 @@ export const ItemCard: FunctionComponent<ItemCardProps> = ({
             {
               headers: {
                 Authorization:
-                  "pk_test.IVpvcz4hnzbLhpVOsCylN5tn886fHUc2GVMKQWm3MpGeeyedyYhji6QbfUL5KD1Yvi6sAKIkpRAs2BD7HoOh4HYzrSmWcYZBfOp6wJYnp0xLNhRP7B30KpWDKg1c6",
+                  "pk.6hBKpdwpQwTShbbv9A1HWSXQ65ujLP1RVoGyCSYpuixcfVLMxysQGGoa0UViCVFLFT4S8vs5xLbHxEDWDOMGcgyYYLioKCK16gfaiOEbaGYj4jO1gKR9nMzMf7UDH",
               },
             }
           );
