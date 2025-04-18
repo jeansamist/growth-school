@@ -8,6 +8,7 @@ import wa from "@/assets/images/wa.png";
 import { DetailPageModal } from "@/components/details-page-modal";
 import { Metadata } from "next";
 import { Extra } from "@/components/ui/extra";
+import avatar1 from "@/assets/images/avatar1.png";
 
 export const metadata: Metadata = {
   title: "Details | Growth school",
@@ -170,6 +171,20 @@ export default async function page({
                 </div>
               </div>
             )}
+            <div>
+              <div className="text-xl font-bold">Avis</div>
+              <div className="leading-normal text-black/70 text-justify">
+                <Image
+                  src={avatar1}
+                  alt=""
+                  className="w-8 rounded-full mr-4 float-left"
+                />
+                <b>John doe : </b>Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Nulla alias tempora reprehenderit laboriosam
+                sit, temporibus necessitatibus, vero deleniti amet rem aperiam
+                saepe ut neque, quis voluptatibus iusto mollitia id totam.
+              </div>
+            </div>
             <div className="border-2 border-gray-400/70 border-dashed"></div>
             <Extra item={item} />
             <div className="border-2 border-gray-400/70 border-dashed mb-6"></div>
