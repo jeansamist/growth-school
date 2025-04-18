@@ -59,6 +59,7 @@ export async function createItem(
   const rawDate = formData.get("date") as string;
   const rawFile = formData.get("file_link") as string;
   const rawModules = formData.get("modules") as string;
+  const rawTestimonials = formData.get("testimonials") as string;
 
   if (!rawTitle || isNaN(rawPrice) || isNaN(rawCategoryId)) {
     return { errors: ["Invalid title, price or category."] };
@@ -77,6 +78,7 @@ export async function createItem(
     edition: rawEdition || "",
     modules: rawModules || "",
     date: rawDate || "",
+    testimonials: rawTestimonials || "",
   };
 
   const d = await prisma.item.create({

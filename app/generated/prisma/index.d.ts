@@ -3530,6 +3530,7 @@ export namespace Prisma {
     isbn: string | null
     language: string | null
     modules: string | null
+    testimonials: string | null
     pages: number | null
     edition: string | null
     date: string | null
@@ -3547,6 +3548,7 @@ export namespace Prisma {
     isbn: string | null
     language: string | null
     modules: string | null
+    testimonials: string | null
     pages: number | null
     edition: string | null
     date: string | null
@@ -3564,6 +3566,7 @@ export namespace Prisma {
     isbn: number
     language: number
     modules: number
+    testimonials: number
     pages: number
     edition: number
     date: number
@@ -3599,6 +3602,7 @@ export namespace Prisma {
     isbn?: true
     language?: true
     modules?: true
+    testimonials?: true
     pages?: true
     edition?: true
     date?: true
@@ -3616,6 +3620,7 @@ export namespace Prisma {
     isbn?: true
     language?: true
     modules?: true
+    testimonials?: true
     pages?: true
     edition?: true
     date?: true
@@ -3633,6 +3638,7 @@ export namespace Prisma {
     isbn?: true
     language?: true
     modules?: true
+    testimonials?: true
     pages?: true
     edition?: true
     date?: true
@@ -3737,6 +3743,7 @@ export namespace Prisma {
     isbn: string | null
     language: string | null
     modules: string | null
+    testimonials: string | null
     pages: number | null
     edition: string | null
     date: string | null
@@ -3773,6 +3780,7 @@ export namespace Prisma {
     isbn?: boolean
     language?: boolean
     modules?: boolean
+    testimonials?: boolean
     pages?: boolean
     edition?: boolean
     date?: boolean
@@ -3794,6 +3802,7 @@ export namespace Prisma {
     isbn?: boolean
     language?: boolean
     modules?: boolean
+    testimonials?: boolean
     pages?: boolean
     edition?: boolean
     date?: boolean
@@ -3812,6 +3821,7 @@ export namespace Prisma {
     isbn?: boolean
     language?: boolean
     modules?: boolean
+    testimonials?: boolean
     pages?: boolean
     edition?: boolean
     date?: boolean
@@ -3830,12 +3840,13 @@ export namespace Prisma {
     isbn?: boolean
     language?: boolean
     modules?: boolean
+    testimonials?: boolean
     pages?: boolean
     edition?: boolean
     date?: boolean
   }
 
-  export type ItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "price" | "cover" | "discount" | "categoryId" | "author" | "isbn" | "language" | "modules" | "pages" | "edition" | "date", ExtArgs["result"]["item"]>
+  export type ItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "price" | "cover" | "discount" | "categoryId" | "author" | "isbn" | "language" | "modules" | "testimonials" | "pages" | "edition" | "date", ExtArgs["result"]["item"]>
   export type ItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     files?: boolean | Item$filesArgs<ExtArgs>
     category?: boolean | CategoryDefaultArgs<ExtArgs>
@@ -3868,6 +3879,7 @@ export namespace Prisma {
       isbn: string | null
       language: string | null
       modules: string | null
+      testimonials: string | null
       pages: number | null
       edition: string | null
       date: string | null
@@ -4308,6 +4320,7 @@ export namespace Prisma {
     readonly isbn: FieldRef<"Item", 'String'>
     readonly language: FieldRef<"Item", 'String'>
     readonly modules: FieldRef<"Item", 'String'>
+    readonly testimonials: FieldRef<"Item", 'String'>
     readonly pages: FieldRef<"Item", 'Int'>
     readonly edition: FieldRef<"Item", 'String'>
     readonly date: FieldRef<"Item", 'String'>
@@ -6965,6 +6978,7 @@ export namespace Prisma {
     isbn: 'isbn',
     language: 'language',
     modules: 'modules',
+    testimonials: 'testimonials',
     pages: 'pages',
     edition: 'edition',
     date: 'date'
@@ -7174,6 +7188,7 @@ export namespace Prisma {
     isbn?: StringNullableFilter<"Item"> | string | null
     language?: StringNullableFilter<"Item"> | string | null
     modules?: StringNullableFilter<"Item"> | string | null
+    testimonials?: StringNullableFilter<"Item"> | string | null
     pages?: IntNullableFilter<"Item"> | number | null
     edition?: StringNullableFilter<"Item"> | string | null
     date?: StringNullableFilter<"Item"> | string | null
@@ -7194,6 +7209,7 @@ export namespace Prisma {
     isbn?: SortOrderInput | SortOrder
     language?: SortOrderInput | SortOrder
     modules?: SortOrderInput | SortOrder
+    testimonials?: SortOrderInput | SortOrder
     pages?: SortOrderInput | SortOrder
     edition?: SortOrderInput | SortOrder
     date?: SortOrderInput | SortOrder
@@ -7217,6 +7233,7 @@ export namespace Prisma {
     isbn?: StringNullableFilter<"Item"> | string | null
     language?: StringNullableFilter<"Item"> | string | null
     modules?: StringNullableFilter<"Item"> | string | null
+    testimonials?: StringNullableFilter<"Item"> | string | null
     pages?: IntNullableFilter<"Item"> | number | null
     edition?: StringNullableFilter<"Item"> | string | null
     date?: StringNullableFilter<"Item"> | string | null
@@ -7237,6 +7254,7 @@ export namespace Prisma {
     isbn?: SortOrderInput | SortOrder
     language?: SortOrderInput | SortOrder
     modules?: SortOrderInput | SortOrder
+    testimonials?: SortOrderInput | SortOrder
     pages?: SortOrderInput | SortOrder
     edition?: SortOrderInput | SortOrder
     date?: SortOrderInput | SortOrder
@@ -7262,6 +7280,7 @@ export namespace Prisma {
     isbn?: StringNullableWithAggregatesFilter<"Item"> | string | null
     language?: StringNullableWithAggregatesFilter<"Item"> | string | null
     modules?: StringNullableWithAggregatesFilter<"Item"> | string | null
+    testimonials?: StringNullableWithAggregatesFilter<"Item"> | string | null
     pages?: IntNullableWithAggregatesFilter<"Item"> | number | null
     edition?: StringNullableWithAggregatesFilter<"Item"> | string | null
     date?: StringNullableWithAggregatesFilter<"Item"> | string | null
@@ -7461,6 +7480,7 @@ export namespace Prisma {
     isbn?: string | null
     language?: string | null
     modules?: string | null
+    testimonials?: string | null
     pages?: number | null
     edition?: string | null
     date?: string | null
@@ -7481,6 +7501,7 @@ export namespace Prisma {
     isbn?: string | null
     language?: string | null
     modules?: string | null
+    testimonials?: string | null
     pages?: number | null
     edition?: string | null
     date?: string | null
@@ -7498,6 +7519,7 @@ export namespace Prisma {
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     modules?: NullableStringFieldUpdateOperationsInput | string | null
+    testimonials?: NullableStringFieldUpdateOperationsInput | string | null
     pages?: NullableIntFieldUpdateOperationsInput | number | null
     edition?: NullableStringFieldUpdateOperationsInput | string | null
     date?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7518,6 +7540,7 @@ export namespace Prisma {
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     modules?: NullableStringFieldUpdateOperationsInput | string | null
+    testimonials?: NullableStringFieldUpdateOperationsInput | string | null
     pages?: NullableIntFieldUpdateOperationsInput | number | null
     edition?: NullableStringFieldUpdateOperationsInput | string | null
     date?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7537,6 +7560,7 @@ export namespace Prisma {
     isbn?: string | null
     language?: string | null
     modules?: string | null
+    testimonials?: string | null
     pages?: number | null
     edition?: string | null
     date?: string | null
@@ -7552,6 +7576,7 @@ export namespace Prisma {
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     modules?: NullableStringFieldUpdateOperationsInput | string | null
+    testimonials?: NullableStringFieldUpdateOperationsInput | string | null
     pages?: NullableIntFieldUpdateOperationsInput | number | null
     edition?: NullableStringFieldUpdateOperationsInput | string | null
     date?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7569,6 +7594,7 @@ export namespace Prisma {
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     modules?: NullableStringFieldUpdateOperationsInput | string | null
+    testimonials?: NullableStringFieldUpdateOperationsInput | string | null
     pages?: NullableIntFieldUpdateOperationsInput | number | null
     edition?: NullableStringFieldUpdateOperationsInput | string | null
     date?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7843,6 +7869,7 @@ export namespace Prisma {
     isbn?: SortOrder
     language?: SortOrder
     modules?: SortOrder
+    testimonials?: SortOrder
     pages?: SortOrder
     edition?: SortOrder
     date?: SortOrder
@@ -7868,6 +7895,7 @@ export namespace Prisma {
     isbn?: SortOrder
     language?: SortOrder
     modules?: SortOrder
+    testimonials?: SortOrder
     pages?: SortOrder
     edition?: SortOrder
     date?: SortOrder
@@ -7885,6 +7913,7 @@ export namespace Prisma {
     isbn?: SortOrder
     language?: SortOrder
     modules?: SortOrder
+    testimonials?: SortOrder
     pages?: SortOrder
     edition?: SortOrder
     date?: SortOrder
@@ -8399,6 +8428,7 @@ export namespace Prisma {
     isbn?: string | null
     language?: string | null
     modules?: string | null
+    testimonials?: string | null
     pages?: number | null
     edition?: string | null
     date?: string | null
@@ -8417,6 +8447,7 @@ export namespace Prisma {
     isbn?: string | null
     language?: string | null
     modules?: string | null
+    testimonials?: string | null
     pages?: number | null
     edition?: string | null
     date?: string | null
@@ -8465,6 +8496,7 @@ export namespace Prisma {
     isbn?: StringNullableFilter<"Item"> | string | null
     language?: StringNullableFilter<"Item"> | string | null
     modules?: StringNullableFilter<"Item"> | string | null
+    testimonials?: StringNullableFilter<"Item"> | string | null
     pages?: IntNullableFilter<"Item"> | number | null
     edition?: StringNullableFilter<"Item"> | string | null
     date?: StringNullableFilter<"Item"> | string | null
@@ -8641,6 +8673,7 @@ export namespace Prisma {
     isbn?: string | null
     language?: string | null
     modules?: string | null
+    testimonials?: string | null
     pages?: number | null
     edition?: string | null
     date?: string | null
@@ -8660,6 +8693,7 @@ export namespace Prisma {
     isbn?: string | null
     language?: string | null
     modules?: string | null
+    testimonials?: string | null
     pages?: number | null
     edition?: string | null
     date?: string | null
@@ -8708,6 +8742,7 @@ export namespace Prisma {
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     modules?: NullableStringFieldUpdateOperationsInput | string | null
+    testimonials?: NullableStringFieldUpdateOperationsInput | string | null
     pages?: NullableIntFieldUpdateOperationsInput | number | null
     edition?: NullableStringFieldUpdateOperationsInput | string | null
     date?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8727,6 +8762,7 @@ export namespace Prisma {
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     modules?: NullableStringFieldUpdateOperationsInput | string | null
+    testimonials?: NullableStringFieldUpdateOperationsInput | string | null
     pages?: NullableIntFieldUpdateOperationsInput | number | null
     edition?: NullableStringFieldUpdateOperationsInput | string | null
     date?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8765,6 +8801,7 @@ export namespace Prisma {
     isbn?: string | null
     language?: string | null
     modules?: string | null
+    testimonials?: string | null
     pages?: number | null
     edition?: string | null
     date?: string | null
@@ -8784,6 +8821,7 @@ export namespace Prisma {
     isbn?: string | null
     language?: string | null
     modules?: string | null
+    testimonials?: string | null
     pages?: number | null
     edition?: string | null
     date?: string | null
@@ -8816,6 +8854,7 @@ export namespace Prisma {
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     modules?: NullableStringFieldUpdateOperationsInput | string | null
+    testimonials?: NullableStringFieldUpdateOperationsInput | string | null
     pages?: NullableIntFieldUpdateOperationsInput | number | null
     edition?: NullableStringFieldUpdateOperationsInput | string | null
     date?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8835,6 +8874,7 @@ export namespace Prisma {
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     modules?: NullableStringFieldUpdateOperationsInput | string | null
+    testimonials?: NullableStringFieldUpdateOperationsInput | string | null
     pages?: NullableIntFieldUpdateOperationsInput | number | null
     edition?: NullableStringFieldUpdateOperationsInput | string | null
     date?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8852,6 +8892,7 @@ export namespace Prisma {
     isbn?: string | null
     language?: string | null
     modules?: string | null
+    testimonials?: string | null
     pages?: number | null
     edition?: string | null
     date?: string | null
@@ -8867,6 +8908,7 @@ export namespace Prisma {
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     modules?: NullableStringFieldUpdateOperationsInput | string | null
+    testimonials?: NullableStringFieldUpdateOperationsInput | string | null
     pages?: NullableIntFieldUpdateOperationsInput | number | null
     edition?: NullableStringFieldUpdateOperationsInput | string | null
     date?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8885,6 +8927,7 @@ export namespace Prisma {
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     modules?: NullableStringFieldUpdateOperationsInput | string | null
+    testimonials?: NullableStringFieldUpdateOperationsInput | string | null
     pages?: NullableIntFieldUpdateOperationsInput | number | null
     edition?: NullableStringFieldUpdateOperationsInput | string | null
     date?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8903,6 +8946,7 @@ export namespace Prisma {
     isbn?: NullableStringFieldUpdateOperationsInput | string | null
     language?: NullableStringFieldUpdateOperationsInput | string | null
     modules?: NullableStringFieldUpdateOperationsInput | string | null
+    testimonials?: NullableStringFieldUpdateOperationsInput | string | null
     pages?: NullableIntFieldUpdateOperationsInput | number | null
     edition?: NullableStringFieldUpdateOperationsInput | string | null
     date?: NullableStringFieldUpdateOperationsInput | string | null

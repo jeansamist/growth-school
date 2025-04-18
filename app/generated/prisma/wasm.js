@@ -141,6 +141,7 @@ exports.Prisma.ItemScalarFieldEnum = {
   isbn: 'isbn',
   language: 'language',
   modules: 'modules',
+  testimonials: 'testimonials',
   pages: 'pages',
   edition: 'edition',
   date: 'date'

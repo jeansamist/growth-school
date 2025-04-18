@@ -174,15 +174,13 @@ export default async function page({
             <div>
               <div className="text-xl font-bold">Avis</div>
               <div className="leading-normal text-black/70 text-justify">
-                <Image
+                {/* <Image
                   src={avatar1}
                   alt=""
                   className="w-8 rounded-full mr-4 float-left"
-                />
-                <b>John doe : </b>Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Nulla alias tempora reprehenderit laboriosam
-                sit, temporibus necessitatibus, vero deleniti amet rem aperiam
-                saepe ut neque, quis voluptatibus iusto mollitia id totam.
+                /> */}
+                <b>John doe : </b>
+                {item.testimonials?.split(",")[0]}
               </div>
             </div>
             <div className="border-2 border-gray-400/70 border-dashed"></div>

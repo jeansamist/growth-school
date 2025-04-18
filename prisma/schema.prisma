@@ -23,23 +23,24 @@ model Tag {
 }
 
 model Item {
-  id          Int         @id @default(autoincrement())
-  title       String
-  description String
-  price       Int
-  cover       String
-  files       File[]
-  discount    Int?
-  categoryId  Int
-  author      String?
-  isbn        String?
-  language    String?
-  modules     String?
-  pages       Int?
-  edition     String?
-  date        String?
-  category    Category    @relation(fields: [categoryId], references: [id])
-  tags        TagOnItem[]
+  id           Int         @id @default(autoincrement())
+  title        String
+  description  String
+  price        Int
+  cover        String
+  files        File[]
+  discount     Int?
+  categoryId   Int
+  author       String?
+  isbn         String?
+  language     String?
+  modules      String?
+  testimonials String?
+  pages        Int?
+  edition      String?
+  date         String?
+  category     Category    @relation(fields: [categoryId], references: [id])
+  tags         TagOnItem[]
 }
 
 model TagOnItem {

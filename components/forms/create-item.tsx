@@ -8,6 +8,7 @@ import { createItem } from "@/services/item/actions";
 import { Prisma } from "@/app/generated/prisma";
 import { useActionState } from "react";
 import { Programm } from "../ui/add-programm";
+import { AddTestimonials } from "../ui/add-testimonials";
 export type CreateItemProps = {
   categories: Prisma.CategoryGetPayload<{}>[];
 };
@@ -116,6 +117,7 @@ export const CreateItem: FunctionComponent<CreateItemProps> = ({
             </div>
           </>
         )}
+        <AddTestimonials />
         {/* <div className="space-y-2">
             <Label>
               Description<span className="text-red-500">*</span>
