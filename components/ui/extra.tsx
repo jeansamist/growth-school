@@ -3,6 +3,8 @@ import axios from "axios";
 import { FunctionComponent } from "react";
 import { Item } from "@/app/generated/prisma";
 import { Button } from "./button";
+import wa from "@/assets/images/wa.png";
+import Image from "next/image";
 
 export type ExtraProps = {
   item: Item;
@@ -62,7 +64,21 @@ export const Extra: FunctionComponent<ExtraProps> = ({ item }) => {
             </span>
           )}
         </h1>
-        <Button variant="secondary">Acheter maintenant</Button>
+        <div className="flex gap-4 items-center">
+          <Button variant="secondary" className="flex-1">
+            Acheter maintenant
+          </Button>
+          <a
+            href={
+              "https://wa.me/237671700380?text=" +
+              encodeURIComponent(
+                "Bonjour, Je voudrais en savoir plus sur " + item.title
+              )
+            }
+          >
+            <Image src={wa} alt="" className="w-10 rounded-full" />
+          </a>
+        </div>
       </form>
     </div>
   );

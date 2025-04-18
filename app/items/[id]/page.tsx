@@ -3,12 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import stars from "@/assets/images/stars.png";
-import { CameraIcon, File, MoveIcon, Video } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { File, Video } from "lucide-react";
+import wa from "@/assets/images/wa.png";
 import { DetailPageModal } from "@/components/details-page-modal";
 import { Metadata } from "next";
-import axios from "axios";
-import { redirect } from "next/navigation";
 import { Extra } from "@/components/ui/extra";
 
 export const metadata: Metadata = {
@@ -308,12 +306,25 @@ export default async function page({
                       <span>4</span>
                     </div>
                     <div className="font-bold">{i.price} FCFA</div>
-                    <Link
-                      href={"/items/" + i.id.toString() + "/buy"}
-                      className="text-primary"
-                    >
-                      Acheter maintenant
-                    </Link>
+                    <div className="flex gap-4 items-center">
+                      <Link
+                        href={"/items/" + i.id.toString() + "/buy"}
+                        className="text-primary"
+                      >
+                        Acheter maintenant
+                      </Link>
+                      <a
+                        href={
+                          "https://wa.me/237671700380?text=" +
+                          encodeURIComponent(
+                            "Bonjour, Je voudrais en savoir plus sur " +
+                              item.title
+                          )
+                        }
+                      >
+                        <Image src={wa} alt="" className="w-10 rounded-full" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               ))}
