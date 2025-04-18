@@ -2,7 +2,7 @@
 import axios from "axios";
 import { FunctionComponent } from "react";
 import { Item } from "@/app/generated/prisma";
-import { Button } from "./button";
+import { Button, buttonVariants } from "./button";
 import wa from "@/assets/images/wa.png";
 import Image from "next/image";
 
@@ -64,8 +64,8 @@ export const Extra: FunctionComponent<ExtraProps> = ({ item }) => {
             </span>
           )}
         </h1>
-        <div className="flex gap-4 items-center">
-          <Button variant="secondary" className="flex-1">
+        <div className="flex gap-4 items-center flex-col md:flex-row w-full md:w-auto">
+          <Button variant="secondary" className="flex-1 w-full md:w-auto">
             Acheter maintenant
           </Button>
           <a
@@ -75,8 +75,12 @@ export const Extra: FunctionComponent<ExtraProps> = ({ item }) => {
                 "Bonjour, Je voudrais en savoir plus sur " + item.title
               )
             }
+            className={buttonVariants({
+              className: "!bg-[#67D449] flex-1 w-full md:w-auto",
+            })}
           >
-            <Image src={wa} alt="" className="w-10 rounded-full" />
+            <Image src={wa} alt="" className="w-10 rounded-full bg-white" />
+            Discuter avec nous sur WhatsApp
           </a>
         </div>
       </form>
