@@ -1,61 +1,77 @@
 "use server";
+import { Ebook } from "@/app/generated/prisma";
 import { axiosInstance } from "@/lib/axios-instance";
 import prisma from "@/lib/prisma";
+import { isAxiosError } from "axios";
 import { redirect } from "next/navigation";
 
 const upload = async (file: Blob) => {
   const form = new FormData();
   form.append("file", file);
 
-  const relativePath = await axiosInstance.post<{
-    status: boolean;
-    data: { path: string };
-  }>("/upload", form, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
+  try {
+    const relativePath = await axiosInstance.post<{
+      status: boolean;
+      data: { path: string };
+    }>("/upload", form, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return relativePath.data.data.path;
+  } catch (error) {
+    if (isAxiosError(error)) {
+      return {
+        errors: [error.response?.data.message],
+      };
+    } else {
+      return {
+        errors: ["Something went wrong. Please try again later."],
+      };
+    }
+  }
+};
+
+const storeCover = async (cover: FormDataEntryValue | null) => {
+  // Upload cover file
+  if (!cover || !(cover instanceof Blob)) {
+    throw new Error("No cover file provided. File missing or invalid");
+  }
+  const resCoverRelativePath = await upload(cover);
+  return (process.env.NEXT_PUBLIC_API || "") + resCoverRelativePath;
+};
+
+const storeEbook = async (ebook: FormDataEntryValue | null) => {
+  // Upload ebook file
+  if (!ebook || !(ebook instanceof Blob)) {
+    throw new Error("No ebook file provided. File missing or invalid");
+  }
+  const resEbookRelativePath = await upload(ebook);
+  return (process.env.NEXT_PUBLIC_API || "") + resEbookRelativePath;
+};
+
+const storeTags = async (tags: string, cover?: string) => {
+  const tagArray = tags.split(",");
+  const tagData = tagArray.map((tag) => ({ name: tag, cover: cover || "" }));
+  return await prisma.tag.createManyAndReturn({
+    data: tagData,
+    skipDuplicates: true,
   });
-  return relativePath.data.data.path;
 };
 
 export async function createItem(
   formState: { errors: string[] },
   formData: FormData
 ) {
-  console.log(formData);
-
-  // Upload cover file
-  const cover = formData.get("cover");
-  if (!cover || !(cover instanceof Blob)) {
-    return {
-      errors: ["We cannot upload cover file. File missing or invalid."],
-    };
-  }
-  const resCoverRelativePath = await upload(cover);
-  const coverPath = "https://server11.vps.webdock.cloud" + resCoverRelativePath;
-
+  // try {
+  const coverPath = await storeCover(formData.get("cover"));
   // Upload ebook file
   const ebook = formData.get("ebook");
   let ebookPath = null;
   if (ebook) {
-    if (!(ebook instanceof Blob)) {
-      return {
-        errors: ["We cannot upload ebook file. File missing or invalid."],
-      };
-    } else {
-      const resEbookRelativePath = await upload(ebook);
-      ebookPath = "https://server11.vps.webdock.cloud" + resEbookRelativePath;
-    }
+    ebookPath = await storeEbook(ebook);
   }
-  // store tags
-  const tags = formData.get("tags") as string;
-  const tagArray = tags.split(",");
-  const tagData = tagArray.map((tag) => ({ name: tag, cover: coverPath }));
-  const storedTags = await prisma.tag.createManyAndReturn({
-    data: tagData,
-    skipDuplicates: true,
-  });
-
+  const storedTags = await storeTags(formData.get("tags") as string, coverPath);
   // store item
   const rawTitle = formData.get("title") as string;
   const rawPrice = parseInt(formData.get("price") as string);
@@ -70,31 +86,82 @@ export async function createItem(
   const rawDate = formData.get("date") as string;
   const rawFile = formData.get("file_link") as string;
   const rawModules = formData.get("modules") as string;
-  const rawTestimonials = formData.get("testimonials") as string;
 
+  const rawTestimonials = formData.get("testimonials") as string;
+  const testimonials = rawTestimonials.split(",");
   if (!rawTitle || isNaN(rawPrice) || isNaN(rawCategoryId)) {
     return { errors: ["Invalid title, price or category."] };
   }
+  const rawNames = formData.get("names") as string;
+  const names = rawNames.split(",");
+  if (rawCategoryId === 2) {
+    await prisma.item.create({
+      data: {
+        title: rawTitle,
+        description: rawDescription || "",
+        price: rawPrice,
+        cover: coverPath,
+        discount: isNaN(rawDiscount) ? 0 : rawPrice - rawDiscount,
+        ebook: {
+          create: {
+            author: rawAuthor || "",
+            isbn: rawIsbn || "",
+            language: rawLanguage || "",
+            pages: isNaN(rawPages) ? 0 : rawPages,
+            edition: rawEdition || "",
+            date: rawDate || "",
+          },
+        },
+        testimonials: {
+          createMany: {
+            data: testimonials.map((testimonial) => ({
+              name: names[testimonials.indexOf(testimonial)],
+              message: testimonial,
+            })),
+          },
+        },
+        tags: {
+          createMany: {
+            data: storedTags.map((tag) => ({ tagId: tag.id })),
+            skipDuplicates: true,
+          },
+        },
+        category: {
+          connect: {
+            id: rawCategoryId,
+          },
+        },
+        files: {
+          create: {
+            url: ebookPath || rawFile,
+            title: rawTitle, // fallback title
+          },
+        },
+      },
+    });
 
-  const itemData = {
-    title: rawTitle,
-    description: rawDescription || "",
-    price: rawPrice,
-    cover: coverPath,
-    discount: isNaN(rawDiscount) ? 0 : rawPrice - rawDiscount,
-    author: rawAuthor || "",
-    isbn: rawIsbn || "",
-    language: rawLanguage || "",
-    pages: isNaN(rawPages) ? 0 : rawPages,
-    edition: rawEdition || "",
-    modules: rawModules || "",
-    date: rawDate || "",
-    testimonials: rawTestimonials || "",
-  };
-
-  const d = await prisma.item.create({
+    redirect(`/`);
+  }
+  await prisma.item.create({
     data: {
-      ...itemData,
+      title: rawTitle,
+      description: rawDescription || "",
+      price: rawPrice,
+      cover: coverPath,
+      discount: isNaN(rawDiscount) ? 0 : rawPrice - rawDiscount,
+      training: {
+        create: {
+          modules: rawModules || "",
+        },
+      },
+      testimonials: {
+        createMany: {
+          data: testimonials.map((testimonial) => ({
+            name: names[testimonials.indexOf(testimonial)],
+            message: testimonial,
+          })),
+        },
+      },
       tags: {
         createMany: {
           data: storedTags.map((tag) => ({ tagId: tag.id })),
@@ -114,5 +181,21 @@ export async function createItem(
       },
     },
   });
+
   redirect(`/`);
+  // } catch (error) {
+  //   if (isAxiosError(error)) {
+  //     return {
+  //       errors: [error.response?.data.message],
+  //     };
+  //   }
+  //   console.log(error);
+
+  //   return {
+  //     errors: [
+  //       "Something went wrong. Please try again later.",
+  //       JSON.stringify(error),
+  //     ],
+  //   };
+  // }
 }
