@@ -136,15 +136,31 @@ exports.Prisma.ItemScalarFieldEnum = {
   price: 'price',
   cover: 'cover',
   discount: 'discount',
-  categoryId: 'categoryId',
+  categoryId: 'categoryId'
+};
+
+exports.Prisma.EbookScalarFieldEnum = {
+  id: 'id',
   author: 'author',
   isbn: 'isbn',
   language: 'language',
-  modules: 'modules',
-  testimonials: 'testimonials',
   pages: 'pages',
   edition: 'edition',
-  date: 'date'
+  date: 'date',
+  itemId: 'itemId'
+};
+
+exports.Prisma.TrainingScalarFieldEnum = {
+  id: 'id',
+  modules: 'modules',
+  itemId: 'itemId'
+};
+
+exports.Prisma.TestimonialScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  message: 'message',
+  itemId: 'itemId'
 };
 
 exports.Prisma.TagOnItemScalarFieldEnum = {
@@ -179,6 +195,9 @@ exports.Prisma.ModelName = {
   Category: 'Category',
   Tag: 'Tag',
   Item: 'Item',
+  Ebook: 'Ebook',
+  Training: 'Training',
+  Testimonial: 'Testimonial',
   TagOnItem: 'TagOnItem',
   File: 'File'
 };

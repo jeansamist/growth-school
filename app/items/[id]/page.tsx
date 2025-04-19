@@ -31,6 +31,9 @@ export default async function page({
           items: true,
         },
       },
+      ebook: true,
+      training: true,
+      testimonials: true,
       files: true,
     },
   });
@@ -133,19 +136,19 @@ export default async function page({
             <div className="opacity-70 leading-normal text-balance lg:text-lg xl:text-xl">
               {item.description}
             </div>
-            {item.categoryId === 2 && (
+            {item.ebook && (
               <>
                 <div className="flex gap-6 items-start">
                   <div>
                     <div className="text-secondary text-sm">Ecrit par</div>
                     <div className="font-bold">
-                      {item.author || "Non precise"}
+                      {item.ebook.author || "Non precise"}
                     </div>
                   </div>
                   <div>
                     <div className="text-secondary text-sm">Edition</div>
                     <div className="font-bold">
-                      {item.edition || "Non precise"}
+                      {item.ebook.edition || "Non precise"}
                     </div>
                   </div>
                   <div>
@@ -155,34 +158,30 @@ export default async function page({
                 </div>
               </>
             )}
-            {item.categoryId === 1 && (
+            {item.training && (
               <div className="flex gap-6 items-center font-bold">
                 <div className="flex items-center gap-6">
                   <File className="text-secondary" size={24} />
                   <span>
-                    {item.modules?.split(",").length.toString()} Modules
+                    {item.training.modules?.split(",").length.toString()}{" "}
+                    Modules
                   </span>
                 </div>
                 <div className="flex items-center gap-6">
-                  {item.categoryId === 1 && (
-                    <Video className="text-secondary" size={24} />
-                  )}
+                  <Video className="text-secondary" size={24} />
                   <span>Format video</span>
                 </div>
               </div>
             )}
-            <div>
-              <div className="text-xl font-bold">Avis</div>
-              <div className="leading-normal text-black/70 text-justify">
-                {/* <Image
-                  src={avatar1}
-                  alt=""
-                  className="w-8 rounded-full mr-4 float-left"
-                /> */}
-                <b>John doe : </b>
-                {item.testimonials?.split(",")[0]}
+            {item.testimonials.length !== 0 && (
+              <div>
+                <div className="text-xl font-bold">Avis</div>
+                <div className="leading-normal text-black/70 text-justify">
+                  <b>{item.testimonials[0].name} : </b>
+                  {item.testimonials[0].message}
+                </div>
               </div>
-            </div>
+            )}
             <div className="border-2 border-gray-400/70 border-dashed"></div>
             <Extra item={item} />
             <div className="border-2 border-gray-400/70 border-dashed mb-6"></div>
@@ -198,7 +197,7 @@ export default async function page({
             <h1 className=" font-bold text-4xl sm:text-5xl lg:text-6xl text-balance">
               {item.categoryId === 1 ? "Contenu du cours" : "Details"}
             </h1>
-            {item.categoryId === 2 ? (
+            {item.ebook ? (
               <div className="text-lg">
                 <div className="py-4 px-6 border-t border-primary-soft flex">
                   <div className="w-[175px] md:w-[300px] font-bold">Titre</div>
@@ -207,25 +206,26 @@ export default async function page({
                 <div className="py-4 px-6 border-t border-primary-soft flex">
                   <div className="w-[175px] md:w-[300px] font-bold">Auteur</div>
                   <div className="flex-1 opacity-70">
-                    {item.author || "Non precise"}
+                    {item.ebook.author || "Non precise"}
                   </div>
                 </div>
                 <div className="py-4 px-6 border-t border-primary-soft flex">
                   <div className="w-[175px] md:w-[300px] font-bold">ISBN</div>
                   <div className="flex-1 opacity-70">
-                    {item.isbn || "Non precise"}
+                    {item.ebook.isbn || "Non precise"}
                   </div>
                 </div>
                 <div className="py-4 px-6 border-t border-primary-soft flex">
                   <div className="w-[175px] md:w-[300px] font-bold">Langue</div>
                   <div className="flex-1 opacity-70">
-                    {item.language || "Non precise"}
+                    {item.ebook.language || "Non precise"}
                   </div>
                 </div>
                 <div className="py-4 px-6 border-t border-primary-soft flex">
                   <div className="w-[175px] md:w-[300px] font-bold">Format</div>
                   <div className="flex-1 opacity-70">
-                    Paper back, {item.pages?.toString() || "Non precise"} Pages
+                    Paper back, {item.ebook.pages?.toString() || "Non precise"}{" "}
+                    Pages
                   </div>
                 </div>
                 <div className="py-4 px-6 border-t border-primary-soft flex">
@@ -233,7 +233,7 @@ export default async function page({
                     Date de publication
                   </div>
                   <div className="flex-1 opacity-70">
-                    {item.date || "Non precise"}
+                    {item.ebook.date || "Non precise"}
                   </div>
                 </div>
                 <div className="py-4 px-6 border-t border-primary-soft flex">
@@ -241,7 +241,7 @@ export default async function page({
                     Edition
                   </div>
                   <div className="flex-1 opacity-70">
-                    {item.edition || "Non precise"}
+                    {item.ebook.edition || "Non precise"}
                   </div>
                 </div>
                 <div className="py-4 px-6 border-t border-primary-soft flex">
@@ -264,7 +264,7 @@ export default async function page({
               </div>
             ) : (
               <div className="text-lg">
-                {item.modules?.split(",").map((f, k) => (
+                {item.training?.modules?.split(",").map((f, k) => (
                   <div
                     className="py-4 px-6 border-t border-primary-soft flex"
                     key={k}

@@ -18,7 +18,6 @@ export const AddTestimonials: FunctionComponent<AddTestimonialsProps> = () => {
         <ul>
           {testimonialTable.map((module, index) => (
             <li key={index}>
-              <b>Module {index + 1} - </b>
               {module}{" "}
               <span
                 className="text-red-500 underline"
@@ -35,7 +34,7 @@ export const AddTestimonials: FunctionComponent<AddTestimonialsProps> = () => {
         </ul>
       </div>
       <div className="space-y-2">
-        <Label>Module</Label>
+        <Label>Entrez le Temoignage</Label>
         <div className="flex gap-4">
           <Input
             type="hidden"
@@ -43,22 +42,30 @@ export const AddTestimonials: FunctionComponent<AddTestimonialsProps> = () => {
             value={testimonialTable.join(",")}
             className="w-full"
           />
+          <Input
+            type="text"
+            name="__"
+            placeholder="Nom"
+            value={testimonialTable.join(",")}
+            className="w-full"
+          />
           <Textarea
             name="_"
             className="w-full"
             value={value}
+            placeholder="Temoignage"
             onChange={(e) => setValue(e.target.value)}
           />
-          <Button
-            type="button"
-            onClick={() => {
-              setTestimonialTable([...testimonialTable, value]);
-              setValue("" as string);
-            }}
-          >
-            Ajouter
-          </Button>
         </div>
+        <Button
+          type="button"
+          onClick={() => {
+            setTestimonialTable([...testimonialTable, value]);
+            setValue("" as string);
+          }}
+        >
+          Ajouter
+        </Button>
       </div>
     </>
   );

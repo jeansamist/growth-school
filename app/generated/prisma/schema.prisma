@@ -23,24 +23,46 @@ model Tag {
 }
 
 model Item {
-  id           Int         @id @default(autoincrement())
+  id           Int           @id @default(autoincrement())
   title        String
   description  String
   price        Int
   cover        String
-  files        File[]
   discount     Int?
+  testimonials Testimonial[]
+  ebook        Ebook?
+  training     Training?
   categoryId   Int
-  author       String?
-  isbn         String?
-  language     String?
-  modules      String?
-  testimonials String?
-  pages        Int?
-  edition      String?
-  date         String?
-  category     Category    @relation(fields: [categoryId], references: [id])
+  files        File[]
+  category     Category      @relation(fields: [categoryId], references: [id])
   tags         TagOnItem[]
+}
+
+model Ebook {
+  id       Int     @id @default(autoincrement())
+  author   String?
+  isbn     String?
+  language String?
+  pages    Int?
+  edition  String?
+  date     String?
+  itemId   Int     @unique
+  item     Item    @relation(fields: [itemId], references: [id])
+}
+
+model Training {
+  id      Int     @id @default(autoincrement())
+  modules String?
+  itemId  Int     @unique
+  item    Item    @relation(fields: [itemId], references: [id])
+}
+
+model Testimonial {
+  id      Int    @id @default(autoincrement())
+  name    String
+  message String
+  itemId  Int
+  item    Item   @relation(fields: [itemId], references: [id])
 }
 
 model TagOnItem {
