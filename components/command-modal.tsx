@@ -10,7 +10,7 @@ import { Label } from "./ui/label";
 import axios from "axios";
 // import PhoneInput from "react-phone-number-input";
 export type CommandModalProps = {
-  item: ItemCardProps;
+  item?: ItemCardProps;
   isOpen: boolean;
   onClose?: () => void;
 };
@@ -20,6 +20,7 @@ export const CommandModal: FunctionComponent<CommandModalProps> = ({
   isOpen,
   onClose,
 }) => {
+  if (!item) return null;
   return (
     <div className={cn("hidden", isOpen && "block")}>
       <div className="fixed inset-0 content-center bg-black/30 z-50">
