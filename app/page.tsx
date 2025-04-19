@@ -19,6 +19,7 @@ export default async function Home() {
     name: category.name,
     cover: category.cover,
   }));
+  //
   const bdTags = await prisma.tag.findMany();
   const dbItems = await prisma.item.findMany({ include: { tags: true } });
   const books: ItemCardProps[] = dbItems
