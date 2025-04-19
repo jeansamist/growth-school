@@ -19,7 +19,9 @@ export const CreateItem: FunctionComponent<CreateItemProps> = ({
   const initialFormState: { errors: string[] } = {
     errors: [],
   };
-  const [categoryId, setCategoryId] = useState<number>(categories[0].id);
+  const [categoryId, setCategoryId] = useState<number>(
+    categories ? categories[0].id : 1
+  );
 
   const [formState, formAction] = useActionState<
     { errors: string[] },
@@ -130,16 +132,24 @@ export const CreateItem: FunctionComponent<CreateItemProps> = ({
           </Label>
           <Input type="file" name="cover" className="w-full" />
         </div>
-
-        <div className="space-y-2">
-          <Label>Lien</Label>
-          <Input
-            type="texte"
-            name="file_link"
-            placeholder="https://"
-            className="w-full"
-          />
-        </div>
+        {categoryId === 2 ? (
+          <div className="space-y-2">
+            <Label>
+              Fichier Ebook<span className="text-red-500">*</span>
+            </Label>
+            <Input type="file" name="ebook" className="w-full" />
+          </div>
+        ) : (
+          <div className="space-y-2">
+            <Label>Lien</Label>
+            <Input
+              type="texte"
+              name="file_link"
+              placeholder="https://"
+              className="w-full"
+            />
+          </div>
+        )}
         <Button className="w-full">Ajouter</Button>
       </form>
     </>

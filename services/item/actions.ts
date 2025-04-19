@@ -3,6 +3,21 @@ import { axiosInstance } from "@/lib/axios-instance";
 import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
 
+const upload = async (file: Blob) => {
+  const form = new FormData();
+  form.append("file", file);
+
+  const relativePath = await axiosInstance.post<{
+    status: boolean;
+    data: { path: string };
+  }>("/upload", form, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return relativePath.data.data.path;
+};
+
 export async function createItem(
   formState: { errors: string[] },
   formData: FormData
@@ -16,26 +31,22 @@ export async function createItem(
       errors: ["We cannot upload cover file. File missing or invalid."],
     };
   }
+  const resCoverRelativePath = await upload(cover);
+  const coverPath = "https://server11.vps.webdock.cloud" + resCoverRelativePath;
 
-  const coverForm = new FormData();
-  coverForm.append("file", cover);
-
-  const resCoverRelativePath = await axiosInstance.post<{
-    status: boolean;
-    data: { path: string };
-  }>("/upload", coverForm, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
-
-  if (!resCoverRelativePath.data.status) {
-    return { errors: ["We cannot upload cover file"] };
+  // Upload ebook file
+  const ebook = formData.get("ebook");
+  let ebookPath = null;
+  if (ebook) {
+    if (!(ebook instanceof Blob)) {
+      return {
+        errors: ["We cannot upload ebook file. File missing or invalid."],
+      };
+    } else {
+      const resEbookRelativePath = await upload(ebook);
+      ebookPath = "https://server11.vps.webdock.cloud" + resEbookRelativePath;
+    }
   }
-
-  const coverPath =
-    "https://server11.vps.webdock.cloud" + resCoverRelativePath.data.data.path;
-
   // store tags
   const tags = formData.get("tags") as string;
   const tagArray = tags.split(",");
@@ -97,7 +108,7 @@ export async function createItem(
       },
       files: {
         create: {
-          url: rawFile,
+          url: ebookPath || rawFile,
           title: rawTitle, // fallback title
         },
       },
