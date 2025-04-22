@@ -1,14 +1,12 @@
-import prisma from "@/lib/prisma";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
 import stars from "@/assets/images/stars.png";
-import { File, Video } from "lucide-react";
 import wa from "@/assets/images/wa.png";
 import { DetailPageModal } from "@/components/details-page-modal";
-import { Metadata } from "next";
 import { Extra } from "@/components/ui/extra";
-import avatar1 from "@/assets/images/avatar1.png";
+import prisma from "@/lib/prisma";
+import { File, Video } from "lucide-react";
+import { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Details | Growth school",
@@ -176,9 +174,16 @@ export default async function page({
             {item.testimonials.length !== 0 && (
               <div>
                 <div className="text-xl font-bold">Avis</div>
-                <div className="leading-normal text-black/70 text-justify">
-                  <b>{item.testimonials[0].name} : </b>
-                  {item.testimonials[0].message}
+                <div className="space-y-4">
+                  {item.testimonials.map((t, k) => (
+                    <div
+                      className="leading-normal text-black/70 text-justify"
+                      key={k}
+                    >
+                      <b>{t.name} : </b>
+                      {t.message}
+                    </div>
+                  ))}
                 </div>
               </div>
             )}
