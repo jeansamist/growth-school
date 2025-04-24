@@ -1,5 +1,6 @@
 import stars from "@/assets/images/stars.png";
 import wa from "@/assets/images/wa.png";
+import { Comments } from "@/components/comments";
 import { DetailPageModal } from "@/components/details-page-modal";
 import { LineClamp } from "@/components/line-clamp";
 import { Extra } from "@/components/ui/extra";
@@ -151,15 +152,7 @@ export default async function page({
               <div>
                 <div className="text-xl font-bold">Avis</div>
                 <div className="space-y-4">
-                  {item.testimonials.map((t, k) => (
-                    <div
-                      className="leading-normal text-black/70 text-justify"
-                      key={k}
-                    >
-                      <b>{t.name} : </b>
-                      {t.message}
-                    </div>
-                  ))}
+                  <Comments testimonials={item.testimonials} />
                 </div>
               </div>
             )}
