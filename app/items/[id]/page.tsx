@@ -1,6 +1,7 @@
 import stars from "@/assets/images/stars.png";
 import wa from "@/assets/images/wa.png";
 import { DetailPageModal } from "@/components/details-page-modal";
+import { LineClamp } from "@/components/line-clamp";
 import { Extra } from "@/components/ui/extra";
 import prisma from "@/lib/prisma";
 import { File, Video } from "lucide-react";
@@ -82,30 +83,7 @@ export default async function page({
           ) : (
             <div className="max-w-[600px] w-full">
               <div className="grid grid-cols-4 gap-4">
-                <div className="col-span-1 space-y-4">
-                  <Image
-                    src={item.cover}
-                    width={600}
-                    height={600}
-                    alt=""
-                    className="!w-full aspect-square object-cover rounded-xl"
-                  />
-                  <Image
-                    src={item.cover}
-                    width={600}
-                    height={600}
-                    alt=""
-                    className="!w-full aspect-square object-cover rounded-xl"
-                  />
-                  <Image
-                    src={item.cover}
-                    width={600}
-                    height={600}
-                    alt=""
-                    className="!w-full aspect-square object-cover rounded-xl"
-                  />
-                </div>
-                <div className="col-span-3">
+                <div className="col-span-4">
                   <Image
                     src={item.cover}
                     width={600}
@@ -131,9 +109,7 @@ export default async function page({
               />
               <span className="text-2xl font-bold">4.0</span>
             </div>
-            <div className="opacity-70 leading-normal text-balance lg:text-lg xl:text-xl">
-              {item.description}
-            </div>
+            <LineClamp text={item.description} />
             {item.ebook && (
               <>
                 <div className="flex gap-6 items-start">
