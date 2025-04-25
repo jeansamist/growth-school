@@ -1,7 +1,9 @@
+import GTM from "@/components/GTM";
+import { AppLayout } from "@/components/layouts/app-layout";
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
+import Head from "next/head";
 import "./globals.css";
-import { AppLayout } from "@/components/layouts/app-layout";
 const font = Cairo({
   variable: "--font-cairo-sans",
   weight: "variable",
@@ -20,7 +22,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <GTM />
+      </Head>
       <body className={`${font.variable} antialiased`}>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-M3K58L5C"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
         <AppLayout>{children}</AppLayout>
       </body>
     </html>
