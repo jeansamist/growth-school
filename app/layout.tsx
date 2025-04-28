@@ -1,3 +1,4 @@
+import GoogleAnalytics from "@/components/GA";
 import GTM from "@/components/GTM";
 import { AppLayout } from "@/components/layouts/app-layout";
 import type { Metadata } from "next";
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <GTM />
+        <GoogleAnalytics />
         {/* <title>lorem</title> */}
       </head>
       <body className={`${font.variable} antialiased`}>

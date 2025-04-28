@@ -77,7 +77,7 @@ export const Extra: FunctionComponent<ExtraProps> = ({ item }) => {
               alt=""
               className="!w-0 opacity-5 rounded-full bg-white h-10"
             />
-            Acheter maintenant
+            Acheter en ligne
           </Button>
           <a
             href={
@@ -91,7 +91,7 @@ export const Extra: FunctionComponent<ExtraProps> = ({ item }) => {
             })}
           >
             <Image src={wa} alt="" className="w-10 rounded-full bg-white" />
-            Discuter avec nous sur WhatsApp
+            Acheter sur WhatsApp
           </a>
         </div>
       </form>
