@@ -35,7 +35,7 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
-        {/* End Google Tag Manager (noscript) */}
+        {/* End Google Tag Manager (noscript) w */}
         <AppLayout>{children}</AppLayout>
       </body>
     </html>
