@@ -1,10 +1,10 @@
 "use client";
-import axios from "axios";
-import { FunctionComponent } from "react";
 import { Item } from "@/app/generated/prisma";
-import { Button, buttonVariants } from "./button";
 import wa from "@/assets/images/wa.png";
+import axios from "axios";
 import Image from "next/image";
+import { FunctionComponent } from "react";
+import { Button, buttonVariants } from "./button";
 
 export type ExtraProps = {
   item: Item;
@@ -65,7 +65,12 @@ export const Extra: FunctionComponent<ExtraProps> = ({ item }) => {
           )}
         </h1>
         <div className="flex gap-4 items-center flex-col md:flex-row w-full md:w-auto">
-          <Button variant="secondary" className="flex-1 w-full md:w-auto">
+          <Button
+            variant="secondary"
+            className={buttonVariants({
+              className: "!h-[60px] items-center flex-1 w-full md:w-auto",
+            })}
+          >
             Acheter maintenant
           </Button>
           <a

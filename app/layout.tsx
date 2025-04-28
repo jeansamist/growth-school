@@ -2,7 +2,6 @@ import GTM from "@/components/GTM";
 import { AppLayout } from "@/components/layouts/app-layout";
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
-import Head from "next/head";
 import "./globals.css";
 const font = Cairo({
   variable: "--font-cairo-sans",
@@ -22,9 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
+      <head>
         <GTM />
-      </Head>
+        {/* <title>lorem</title> */}
+      </head>
       <body className={`${font.variable} antialiased`}>
         {/* Google Tag Manager (noscript) */}
         <noscript>
