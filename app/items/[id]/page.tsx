@@ -294,7 +294,9 @@ export default async function page({
                         </svg>
                         <span>4</span>
                       </div>
-                      <div className="font-bold">{i.price} FCFA</div>
+                      <div className="font-bold">
+                        {i.price - (i.discount || 0)} FCFA
+                      </div>
                       <div className="flex gap-4 items-center">
                         <Link
                           href={"/items/" + i.id.toString() + "/buy"}
