@@ -68,9 +68,15 @@ export const Extra: FunctionComponent<ExtraProps> = ({ item }) => {
           <Button
             variant="secondary"
             className={buttonVariants({
+              variant: "secondary",
               className: "!h-[60px] items-center flex-1 w-full md:w-auto",
             })}
           >
+            <Image
+              src={wa}
+              alt=""
+              className="!w-0 opacity-5 rounded-full bg-white h-10"
+            />
             Acheter maintenant
           </Button>
           <a
